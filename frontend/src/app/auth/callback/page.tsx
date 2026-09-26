@@ -5,6 +5,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { authApi, setAuthToken } from "@/lib/api";
 import { Sparkles } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 function AuthCallbackContent() {
   const router = useRouter();
   const searchParams = useSearchParams();

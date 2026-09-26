@@ -60,3 +60,5 @@ htmlcov/
 
 # Local wiki clone
 wiki-repo/
+
+.vercel
