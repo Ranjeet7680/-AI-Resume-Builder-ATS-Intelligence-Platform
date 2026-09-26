@@ -1,66 +1,146 @@
-# 🚀 AI Resume Builder & ATS Intelligence Platform
+# -AI-Resume-Builder-ATS-Intelligence-Platform
 
-A production-grade **AI Resume Builder & ATS Optimization Platform** with **LinkedIn Authentication**, **Google XYZ Formula Bullet Rewriting**, **Hybrid ATS Scoring**, and **Job Description Semantic Matching**.
+<div align="center">
+
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Python](https://img.shields.io/badge/python-3.11+-blue.svg?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.111.0-009688.svg?logo=fastapi&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-14.2.5-black.svg?logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6.svg?logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC.svg?logo=tailwind-css&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16%2Bpgvector-336791.svg?logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED.svg?logo=docker&logoColor=white)
+![Vercel](https://img.shields.io/badge/Deploy-Vercel-black.svg?logo=vercel&logoColor=white)
+
+**An Enterprise-Grade AI Career Operating System (SaaS OS) & ATS Optimization Engine**
+
+*Built with Next.js 14 App Router, FastAPI Async, PostgreSQL 16 + pgvector, LinkedIn OIDC, 24+ Professional Templates, and Conversational Voice AI supporting 12 Indian Languages.*
+
+[🚀 Live Demo](#-live-demo--preview) • [✨ Key Features](#-features-and-capabilities) • [🏗️ Architecture](#️-system-architecture) • [⚡ Quickstart](#-quickstart-local-development) • [☁️ Deploy to Vercel](#-deployment-guide-vercel--backend) • [📖 API Reference](#-api-endpoints-reference)
+
+</div>
 
 ---
 
-## 🏗️ System Architecture
+## 🎨 Interactive Architecture Diagram
+
+<div align="center">
+
+<img src="./docs/architecture-diagram.svg" alt="AI Resume Builder & Career OS Architecture Diagram" width="100%" />
+
+</div>
+
+---
+
+## 🌟 Complete User Journey Flow
 
 ```text
-                    ┌─────────────────────────┐
-                    │        LinkedIn         │
-                    │   OAuth 2.0 / OIDC      │
-                    └────────────┬────────────┘
-                                 │
-                                 ▼
-┌─────────────────────────────────────────────────────────────┐
-│                          FRONTEND                           │
-│                Next.js 14 + React + TypeScript              │
-│                                                             │
-│  Landing  │  Login / OAuth  │  Dashboard  │  Resume Builder │
-│  Templates│  AI Enhancer    │  ATS Score  │  Job Matcher    │
-└──────────────────────────────┬──────────────────────────────┘
-                               │ REST API
-                               ▼
-┌─────────────────────────────────────────────────────────────┐
-│                          BACKEND                            │
-│                      FastAPI + Python                       │
-│                                                             │
-│   Auth API   │ Resume API │ ATS Engine │ AI Engine │ Export │
-└───────┬──────────────────────┬──────────────────────┬───────┘
-        │                      │                      │
-        ▼                      ▼                      ▼
-   PostgreSQL             AI/ML Engine              Redis
-   + pgvector           ┌──────────────┐            Cache &
-   User / Resume Data   │ XYZ Rewriter │            Rate Limiting
-                        │ ATS Scorer   │
-                        │ Job Matcher  │
-                        └──────────────┘
+WELCOME / SPLASH SCREEN (/welcome)
+        ↓
+LANDING PAGE (/)
+        ↓
+LOGIN / SIGN UP (/login, /signup)
+        ↓
+ONBOARDING WIZARD (/onboarding)
+        ↓
+CENTRAL COMMAND DASHBOARD (/dashboard)
+        │
+        ├── 👤 Candidate Profile & Bio (/profile)
+        ├── 📄 WYSIWYG Resume Builder (/builder/new, /builder/[id])
+        ├── 🩺 7-Factor Resume Diagnostic (/resume-health)
+        ├── 🎨 24+ Multi-Template Studio (/templates)
+        ├── 🎯 AI Job Match & Tailor (/tailor)
+        ├── 🔍 ATS Parser & Compatibility Checker (/ats-analyzer)
+        ├── 💡 Skill Gap & Career Roadmap (/resume-health)
+        ├── ✉️ AI Cover Letter Generator (/cover-letter)
+        ├── 🤖 Conversational AI Career Coach (/career-coach)
+        ├── 🎤 Voice Assistant & 12 Indian Languages (/career-coach)
+        ├── 🏆 Voice Mock Interview Simulator (/career-coach)
+        ├── 🔗 LinkedIn Profile Optimizer (/linkedin)
+        ├── 🐙 GitHub Repository Analyzer (/github)
+        ├── 📈 Application Pipeline Kanban (/applications)
+        ├── 📊 Career & Visibility Analytics (/analytics)
+        ├── ⚙️ Functional Settings Hub (/settings)
+        ├── 📢 Contextual Promotion & Tip Engine (/components/common/PromotionBanner.tsx)
+        └── 🛠️ Admin Dashboard & Campaign Manager (/admin)
 ```
 
 ---
 
-## 🌟 Key Features
+## ✨ Features and Capabilities
 
-1. **LinkedIn Authentication & Hybrid Import**:
-   - Frictionless sign-in via LinkedIn OpenID Connect (`openid profile email`).
-   - Built-in **LinkedIn Profile PDF Parser** (`More -> Save to PDF`) to solve public API scope limitations and automatically populate work history, education, and skills.
-2. **Google XYZ Formula AI Enhancer**:
-   - Transforms passive bullets (*"I made a website with React"*) into quantified achievements (*"Developed a responsive React web app, optimizing component reusability and reducing load times by 30%"*).
-   - Strict hallucination guardrails to preserve factual veracity.
-3. **Hybrid ATS Scoring Engine**:
-   - Calculates a deterministic 0–100 ATS readiness score:
-     - Keywords match (30%)
-     - Technical skills coverage (20%)
-     - Strong action verbs ratio (20%)
-     - Measurable metrics & numbers (15%)
-     - ATS formatting compliance (15%)
-4. **Job Description ↔ Resume Semantic Matcher**:
-   - Paste any target job description to get instant technical match %, experience fit, missing skills gap audit, and tailoring suggestions.
-5. **Multi-Format Export**:
-   - Single-column ATS-friendly print CSS (instant PDF).
-   - Microsoft Word (`.docx`) export.
-   - Standard JSON Resume data interchange format.
+### 1. 🔐 Authentication & Zero-Hallucination Import
+- **LinkedIn OpenID Connect (OIDC)**: Secure authorization flow with `openid`, `profile`, and `email` scopes.
+- **LinkedIn Profile PDF Ingestion**: Client-side & server-side parser for official LinkedIn PDF exports (`More ➔ Save to PDF`) to bypass third-party API restrictions.
+- **Multi-Provider Auth**: Google OAuth, GitHub, Email/Password, and 1-Click Sandbox Demo login.
+
+### 2. 🎨 Multi-Template Resume Studio (24+ Designs Across 7 Categories)
+- **Content-Presentation Decoupling**: Candidate career facts are never modified or lost when cycling through designs.
+- **7 Industry Categories**:
+  - **ATS-Friendly (100% Guaranteed)**: Minimalist, Classic Ivy, One-Page Compact, Corporate, EuroPass.
+  - **Modern Professional**: Modern Blue, Minimal Slate, Split Two-Column, Clean Executive, Visual Timeline.
+  - **Tech & Software**: Software Engineer Pro (FAANG-tested), Full-Stack Split, Frontend Specialist, Backend/Cloud Architect, DevOps/SRE.
+  - **Data & AI**: AI/ML Specialist (GenAI & LLMs), Data Scientist Analytics, Generative AI Architect, Data Platform Engineer.
+  - **Student & Fresher**: Campus Fresher Classic, Student Internship, BTech Placement Standard (IIT/NIT drive ready).
+  - **Executive & Leadership**: Executive Leadership Classic, Director & VP Strategy.
+  - **Creative & Startup**: Creative Modern Impact, Startup Impact & Growth.
+- **Dynamic Design Engine**: Live customization of 8 typography font families (`Inter`, `Roboto`, `Open Sans`, `Lato`, `Poppins`, `Montserrat`, `Merriweather`, `Georgia`), 8 color palettes, 4 layout modes (`single`, `two-column`, `compact`, `timeline`), and header styles.
+- **✨ AI Design Recommender**: Analyzes target role, seniority level, and job description to recommend top 3 templates with strategic hiring rationale.
+- **⚡ 1-Click "Create 5 Versions" Generator**: Instantly spawns 5 specialized records (ATS Minimalist, Modern Professional, Role-Tailored, Compact One-Page, Vanity Public Link) with direct download bundles.
+
+### 3. 🎯 AI Bullet Rewriter & STAR Method
+- **Google XYZ Formula**: Automatically rewrites passive bullet points into high-impact quantified achievements:
+  $$\text{Accomplished [X], as measured by [Y], by doing [Z]}$$
+- **Interactive STAR Builder Modal**: Guided step-by-step assistant for Situation, Task, Action, and Result.
+
+### 4. 🔍 Hybrid ATS Compliance Engine
+- Computes deterministic scores (0–100) based on:
+  - 30% Target role keyword density and exact match
+  - 20% Hard technical skills & framework coverage
+  - 20% Action verb punchiness (Harvard/Google action verb dictionary)
+  - 15% Measurable outcome metrics & numbers
+  - 15% Formatting compliance (single-column parsing check)
+
+### 5. 🤖 Voice Career Assistant & 12 Indian Languages
+- **Conversational Speech AI**: Speech-to-Text (STT) and Text-to-Speech (TTS) with real-time browser audio playback.
+- **Indian Language Support**: Native support for **Hindi (हिंदी / Hinglish)**, **Bengali (বাংলা)**, **Marathi (मराठी)**, **Gujarati (ગુજરાતી)**, **Tamil (தமிழ்)**, **Telugu (తెలుగు)**, **Kannada (ಕನ್ನಡ)**, **Malayalam (മലയാളം)**, **Punjabi (ਪੰਜਾਬੀ)**, **Odia (ଓଡ଼ିଆ)**, **Assamese (অসমীয়া)**, and **English**.
+- **Voice Mock Interview Simulator**: Technical, HR, Behavioral, and Project rounds with question generation, speech response transcription, and scoring breakdown.
+
+### 6. 🐙 GitHub Repository Analyzer
+- Connects GitHub handles to analyze public repositories, languages, stars, and commit patterns.
+- Auto-synthesizes quantified resume project bullet points with 1-click **"Add to Resume Projects"**.
+
+### 7. 🔗 LinkedIn Profile Optimizer
+- Generates high-converting headlines optimized for LinkedIn Recruiter search algorithms.
+- Formats engaging **About** summaries and recommends featured skills.
+
+### 8. 📈 Kanban Application Tracker Pipeline
+- Full 6-stage Kanban board: `Saved` $\to$ `Applied` $\to$ `Screening` $\to$ `Interview` $\to$ `Offer Received` $\to$ `Archived / Rejected`.
+- Stores company, role, location, salary range, interview dates, resume version linkage, and notes.
+
+### 9. 📊 Career & Visibility Analytics
+- Visualizes resume views, `.docx` downloads, `.txt` exports, ATS diagnostic dimension scores (Formatting, Verbs, Skills, Metrics), and a 7-day application pulse chart.
+
+### 10. ⚙️ Functional Settings Hub & Data Hygiene Wiping
+- **Account**: Credentials and permanent account deletion.
+- **Appearance**: Light / Dark / System theme switcher.
+- **Language**: English + 11 Indian languages.
+- **Voice**: Speech speed slider ($0.75\times - 1.5\times$), auto-play toggle, and live voice tester.
+- **Notifications**: Email digests, interview calendar reminders, and pipeline alerts.
+- **Privacy & Data Hygiene**: Public vanity profile visibility toggle + 1-click **"Wipe All AI History"** (permanently wipes chat conversations, voice recordings, and mock interview transcripts).
+- **Integrations**: LinkedIn and GitHub connection status.
+- **Billing**: Active plan management and invoice history.
+
+### 11. 🛠️ Admin Dashboard & Campaign Manager
+- **Platform Metrics**: Total Users ($1,420+$), Active Subscriptions ($380$), Resumes Created ($4,890+$), MRR (₹$189,500$), and System Uptime ($99.98\%$).
+- **Campaign / Ad Manager**: Create, target, toggle ON/OFF non-intrusive career tip banners and track impressions/clicks.
+- **Template Directory**: Live status and ATS score tags for all 24+ resume designs.
+
+### 12. 📤 Multi-Format Export
+- **Microsoft Word (`.docx`)**: Clean tables, standard bullet points, and ATS margins.
+- **Print / PDF**: Pixel-perfect printable CSS layout.
+- **Plain-Text ASCII (`.txt`)**: Clean text format for copy-pasting directly into ATS portal textareas.
+- **Vanity Public Web Link**: Shareable candidate link (`/r/[slug]`) with view metrics.
 
 ---
 
@@ -68,109 +148,190 @@ A production-grade **AI Resume Builder & ATS Optimization Platform** with **Link
 
 ```text
 wise-fermi/
-├── docker-compose.yml              # Complete containerized stack
-├── .env.example                     # Environment configuration
-├── README.md
-├── backend/                         # FastAPI Python Backend
+├── docs/
+│   └── architecture-diagram.svg         # Animated SVG architecture diagram
+├── docker-compose.yml                   # Container stack (Postgres + pgvector + Redis + App)
+├── render.yaml                          # One-click Render infrastructure blueprint
+├── vercel.json                          # Monorepo Vercel configuration
+├── backend/                             # FastAPI Python Async Backend
 │   ├── Dockerfile
+│   ├── Procfile                         # Cloud deployment entrypoint
 │   ├── requirements.txt
+│   ├── tests/                           # Pytest test suites (100% pass)
+│   │   ├── test_chat.py
+│   │   ├── test_saas.py
+│   │   ├── test_smoke.py
+│   │   └── test_templates.py
 │   └── app/
-│       ├── main.py                  # App entrypoint & CORS
-│       ├── config.py                # Pydantic Settings
-│       ├── database.py              # Async SQLAlchemy + pgvector
-│       ├── models/                  # User, Resume, ATSReport, JobMatch
-│       ├── schemas/                 # Pydantic v2 schemas
-│       ├── api/                     # REST API routers
-│       ├── services/                # LinkedIn OIDC, AI Engine, ATS Scorer, Export
-│       └── utils/                   # Action verbs, regex, security
-└── frontend/                        # Next.js 14 App Router Frontend
-    ├── Dockerfile
+│       ├── main.py                      # App entrypoint, CORS, routers
+│       ├── config.py                    # Pydantic Settings
+│       ├── database.py                  # Async SQLAlchemy + pgvector + fallback SQLite
+│       ├── models/                      # User, Resume, JobMatch, Application, Campaign
+│       ├── schemas/                     # Pydantic v2 validation models
+│       ├── api/                         # REST API endpoints (Auth, Resume, Templates, etc.)
+│       └── services/                    # Business logic (AI Engine, Templates, GitHub, etc.)
+└── frontend/                            # Next.js 14 App Router Frontend
+    ├── vercel.json                      # Vercel deployment configuration
     ├── package.json
     ├── tailwind.config.ts
+    ├── public/
+    │   └── architecture-diagram.svg
     └── src/
-        ├── app/                     # Landing, Login, Dashboard, Builder, ATS, Matcher
-        ├── components/              # Live Preview, ATS Gauge, AI Enhancer Modal
-        ├── store/                   # Zustand real-time editor state
-        └── lib/                     # API client & helpers
+        ├── app/                         # App Router (25 static & dynamic pages)
+        │   ├── page.tsx                 # SaaS Landing page
+        │   ├── welcome/                 # Animated splash screen
+        │   ├── login/ & signup/         # Multi-provider auth
+        │   ├── onboarding/              # 4-step personalization wizard
+        │   ├── dashboard/               # Central command center
+        │   ├── builder/                 # WYSIWYG Resume editor
+        │   ├── templates/               # 24+ Multi-Template Studio
+        │   ├── applications/            # Kanban application tracker
+        │   ├── career-coach/            # Conversational & Voice AI Coach
+        │   ├── github/                  # GitHub repository analyzer
+        │   ├── linkedin/                # LinkedIn profile optimizer
+        │   ├── profile/                 # Candidate master profile
+        │   ├── settings/                # Functional settings hub
+        │   ├── admin/                   # Admin portal & campaign manager
+        │   ├── analytics/               # Career search metrics
+        │   ├── ats-analyzer/            # ATS parser & score diagnostic
+        │   ├── cover-letter/            # Cover letter synthesizer
+        │   ├── resume-health/           # 7-factor diagnostic & roadmap
+        │   ├── tailor/                  # AI job description tailoring
+        │   └── r/[slug]/                # Vanity public resume link
+        ├── components/
+        │   ├── common/                  # PromotionBanner, Theme toggles
+        │   ├── layout/                  # Navbar with quick search & profile menu
+        │   ├── resume/                  # Dynamic ResumePreview with 4 layout modes
+        │   └── ai/                      # Persistent floating AiCareerAssistant widget
+        ├── store/                       # Zustand real-time editor state
+        ├── types/                       # TypeScript interfaces (saas, template, resume)
+        └── lib/                         # Typed API client
 ```
 
 ---
 
-## ⚡ Quickstart
+## ⚡ Quickstart (Local Development)
 
-### Option 1: Run with Docker Compose (Recommended)
+### 1. Prerequisites
+- **Node.js**: v18.x or v20.x
+- **Python**: 3.10+ (Recommended: 3.11)
+- **Docker** *(optional, for full Postgres + pgvector stack)*
 
-1. Clone and navigate to the directory:
-   ```bash
-   cd wise-fermi
-   ```
-
-2. Copy environment file:
-   ```bash
-   cp .env.example .env
-   ```
-
-3. Launch all containers:
-   ```bash
-   docker compose up --build
-   ```
-
-- **Frontend**: [http://localhost:3000](http://localhost:3000)
-- **FastAPI Interactive Docs**: [http://localhost:8000/docs](http://localhost:8000/docs)
-
----
-
-### Option 2: Run Locally Without Docker
-
-#### 1. Backend (FastAPI)
+### 2. Backend Setup
 ```bash
 cd backend
-python -m venv venv
-# Windows:
-.\venv\Scripts\activate
-# Linux/macOS:
-source venv/bin/activate
+python -m venv .venv
+
+# On Windows:
+.\.venv\Scripts\activate
+# On Linux/macOS:
+# source .venv/bin/activate
 
 pip install -r requirements.txt
 uvicorn app.main:app --reload --port 8000
 ```
+> **Note**: If PostgreSQL is not running locally, the backend automatically boots with a local asynchronous SQLite database at `./resume_builder.db`.
 
-#### 2. Frontend (Next.js)
+### 3. Frontend Setup
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-
-Visit [http://localhost:3000](http://localhost:3000).
-
----
-
-## 🔑 LinkedIn Developer Portal Setup
-
-1. Go to the [LinkedIn Developer Portal](https://www.linkedin.com/developers/).
-2. Create an App and associate it with your company/page.
-3. Under the **Products** tab, add:
-   - **Sign In with LinkedIn using OpenID Connect**
-4. Under the **Auth** tab:
-   - Add your Authorized Redirect URL: `http://localhost:3000/auth/callback`
-   - Copy your **Client ID** and **Client Secret** into `.env`.
-
-> **Note on LinkedIn API Scopes:** Standard LinkedIn OIDC provides verified identity, email, and picture. For importing full experience bullets, users can upload their exported profile PDF via the 1-click **"Upload LinkedIn Profile PDF"** tool built directly into the app.
+Open **[http://localhost:3000](http://localhost:3000)** in your browser.
 
 ---
 
-## 🧪 Testing Endpoints
+## ☁️ Deployment Guide (Vercel & Backend)
+
+### Deploy Frontend to Vercel (1-Click)
+
+1. Push this repository to your GitHub account:
+   ```bash
+   git remote add origin https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform.git
+   git branch -M main
+   git push -u origin main
+   ```
+2. Go to **[Vercel Dashboard](https://vercel.com/new)** and click **Import Repository**.
+3. Select your repository `Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform`.
+4. Configure Project Settings:
+   - **Root Directory**: `frontend` (or leave root as `vercel.json` automatically configures it)
+   - **Framework Preset**: `Next.js`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `.next`
+5. Add Environment Variables:
+   ```env
+   NEXT_PUBLIC_API_URL=https://your-backend-api-domain.com/api/v1
+   ```
+6. Click **Deploy**. Vercel will build and launch your production web app in under 2 minutes!
+
+---
+
+### Deploy Backend (Render, Railway, Fly.io, or VPS)
+
+#### Option A: One-Click Render Blueprint
+This repository includes a [`render.yaml`](./render.yaml) file.
+1. Connect your GitHub repository to **[Render](https://dashboard.render.com/)**.
+2. Select **New ➔ Blueprint** and pick this repository.
+3. Render automatically provisions:
+   - Python FastAPI Web Service (`ai-resume-backend`)
+   - Managed PostgreSQL 16 Database (`ai-resume-db`)
+   - Auto-configured environment variables.
+
+#### Option B: Docker Compose (Self-Hosted VPS / AWS EC2)
+```bash
+docker compose up -d --build
+```
+This launches:
+- `backend`: FastAPI app running on port 8000
+- `frontend`: Next.js production server running on port 3000
+- `postgres`: PostgreSQL 16 with `pgvector` enabled on port 5432
+- `redis`: Redis server for caching on port 6379
+
+---
+
+## 📖 API Endpoints Reference
 
 | Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/v1/auth/linkedin/url` | Generates LinkedIn OAuth login URL |
-| `POST` | `/api/v1/auth/demo` | Sandbox 1-click instant login |
-| `POST` | `/api/v1/auth/import-linkedin-pdf` | Parses LinkedIn profile PDF |
-| `GET` | `/api/v1/resume` | Lists user's resumes |
-| `POST` | `/api/v1/resume` | Creates a new resume |
-| `POST` | `/api/v1/ai/improve-bullet` | Rewrites draft into XYZ achievement |
-| `POST` | `/api/v1/ats/analyze` | Generates ATS score & keyword gap audit |
-| `POST` | `/api/v1/jobs/match` | Matches resume against job description |
-| `GET` | `/api/v1/export/{id}/docx` | Downloads Microsoft Word document |
-| `GET` | `/api/v1/export/{id}/html` | Print-ready ATS HTML template |
+| :--- | :--- | :--- |
+| `GET` | `/templates` | List all 24+ professional resume templates across 7 categories |
+| `POST` | `/templates/recommend` | AI layout recommendation based on role, level, and job description |
+| `POST` | `/templates/create-5-versions` | 1-Click generator creating 5 targeted resume variations |
+| `GET` | `/api/v1/export/{id}/docx` | Export resume as Microsoft Word document |
+| `GET` | `/api/v1/export/{id}/txt` | Export resume as clean Plain-Text ASCII for ATS textareas |
+| `POST` | `/api/v1/chat/message` | Conversational Career AI text coaching |
+| `POST` | `/api/v1/chat/voice` | Voice-to-Voice AI career advice & transcription |
+| `POST` | `/api/v1/speech/synthesize` | TTS audio generation for 12 Indian languages + English |
+| `POST` | `/api/v1/interview/start` | Launch voice mock interview simulation session |
+| `POST` | `/api/v1/interview/answer` | Submit interview answer & receive instant speech feedback |
+| `POST` | `/api/v1/interview/evaluate` | Generate comprehensive performance scorecard & rubric |
+| `GET` | `/api/v1/applications` | Retrieve user's Kanban job application tracker pipeline |
+| `POST` | `/api/v1/applications` | Create new job application entry |
+| `POST` | `/api/v1/github/analyze` | Parse GitHub repositories & generate quantified resume projects |
+| `POST` | `/api/v1/ai/optimize-linkedin` | Generate high-converting headlines & About sections |
+| `GET` | `/api/v1/profile` | Get candidate master profile & completeness meter |
+| `GET` | `/api/v1/analytics` | Get resume views, downloads, and conversion metrics |
+| `GET` | `/api/v1/admin/stats` | Platform operational statistics and health |
+| `GET` | `/api/v1/admin/campaigns` | Active promotion & career tip campaigns |
+
+---
+
+## 🧪 Automated Testing
+
+Both backend and frontend have automated test suites:
+
+```bash
+# Run full backend test suite (Chat, Templates, SaaS, Smoke)
+cd backend
+.\.venv\Scripts\pytest -v
+
+# Run frontend production type checking and compilation
+cd frontend
+npm run build
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
