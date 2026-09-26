@@ -114,6 +114,7 @@ interface ResumeState {
   // Skills actions
   updateSkillCategory: (index: number, category: string, items: string[]) => void;
   addSkillCategory: () => void;
+  addSkill: (category: string, skill: string) => void;
   removeSkillCategory: (index: number) => void;
 
   // Run live ATS check
@@ -238,6 +239,20 @@ export const useResumeStore = create<ResumeState>((set, get) => ({
         skills: [...state.resume.skills, { category: "New Category", items: ["Skill A", "Skill B"] }],
       },
     })),
+
+  addSkill: (category, skill) =>
+    set((state) => {
+      const skills = state.resume.skills.map((s) => ({ ...s, items: [...s.items] }));
+      const existing = skills.find((s) => s.category.toLowerCase() === category.toLowerCase());
+      if (existing) {
+        if (!existing.items.includes(skill)) {
+          existing.items.push(skill);
+        }
+      } else {
+        skills.push({ category, items: [skill] });
+      }
+      return { resume: { ...state.resume, skills } };
+    }),
 
   removeSkillCategory: (index) =>
     set((state) => ({

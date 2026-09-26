@@ -265,3 +265,93 @@ export const analysisApi = {
       body: JSON.stringify(payload),
     }),
 };
+
+// AI Career Chatbot & Voice API
+export const chatApi = {
+  sendMessage: (payload: any) =>
+    apiRequest<any>("/chat/message", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+
+  sendVoice: (payload: any) =>
+    apiRequest<any>("/chat/voice", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+
+  transcribeAudio: (audio_base64: string, language?: string) =>
+    apiRequest<{ text: string; detected_language: string; confidence: number }>("/speech/transcribe", {
+      method: "POST",
+      body: JSON.stringify({ audio_base64, language }),
+    }),
+
+  synthesizeSpeech: (text: string, language: string = "en", speed: number = 1.0) =>
+    apiRequest<{ audio_base64: string; content_type: string; duration_seconds: number }>("/speech/synthesize", {
+      method: "POST",
+      body: JSON.stringify({ text, language, speed }),
+    }),
+
+  detectLanguage: (text: string) =>
+    apiRequest<{
+      detected_language: string;
+      language_name: string;
+      is_indian_language: boolean;
+      is_hinglish: boolean;
+      script: string;
+      confidence: number;
+    }>("/language/detect", {
+      method: "POST",
+      body: JSON.stringify({ text }),
+    }),
+
+  getSupportedLanguages: () =>
+    apiRequest<{ languages: Record<string, { name: string; native: string; bcp47: string; script: string }> }>("/language/supported"),
+
+  startInterview: (payload: {
+    target_role: string;
+    interview_mode: string;
+    resume_id?: string;
+    resume_data?: any;
+    job_description?: string;
+    language?: string;
+  }) =>
+    apiRequest<any>("/interview/start", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+
+  answerInterview: (payload: {
+    session_id: string;
+    question: string;
+    answer_text: string;
+    interview_mode: string;
+    target_role: string;
+    question_index: number;
+    total_questions: number;
+    language?: string;
+    resume_context?: any;
+  }) =>
+    apiRequest<any>("/interview/answer", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+
+  evaluateInterview: (payload: {
+    session_id: string;
+    target_role: string;
+    interview_mode: string;
+    qa_history: any[];
+    language?: string;
+  }) =>
+    apiRequest<any>("/interview/evaluate", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+
+  deleteChatHistory: (session_id: string = "default") =>
+    apiRequest<{ status: string; message: string }>(`/chat/history?session_id=${encodeURIComponent(session_id)}`, {
+      method: "DELETE",
+    }),
+};
+

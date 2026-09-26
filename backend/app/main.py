@@ -11,6 +11,7 @@ from app.api.jobs import router as jobs_router
 from app.api.export import router as export_router
 from app.api.tailor import router as tailor_router
 from app.api.analysis import router as analysis_router
+from app.api.chat import router as chat_router
 
 
 @asynccontextmanager
@@ -39,12 +40,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Register direct OAuth endpoints at root (/auth/linkedin and /auth/linkedin/callback)
+# Register direct endpoints at root
 app.include_router(auth_router)
+app.include_router(chat_router)
 
 # Register API v1 Routers
 api_v1_prefix = "/api/v1"
 app.include_router(auth_router, prefix=api_v1_prefix)
+app.include_router(chat_router, prefix=api_v1_prefix)
 app.include_router(resume_router, prefix=api_v1_prefix)
 app.include_router(ai_router, prefix=api_v1_prefix)
 app.include_router(ats_router, prefix=api_v1_prefix)

@@ -9,6 +9,7 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "/dashboard", label: "Dashboard", icon: FileText },
+    { href: "/career-coach", label: "🎙️ Career Coach", icon: Sparkles },
     { href: "/tailor", label: "🎯 AI Tailor", icon: Target },
     { href: "/builder/new", label: "Resume Builder", icon: Sparkles },
     { href: "/ats-analyzer", label: "ATS Analyzer", icon: CheckCircle2 },

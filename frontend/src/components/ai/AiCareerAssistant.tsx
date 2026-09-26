@@ -1,29 +1,37 @@
 "use client";
 
 import { useState } from "react";
-import { MessageSquare, Send, Sparkles, X, ChevronDown, CheckCircle2 } from "lucide-react";
-import { aiApi } from "@/lib/api";
+import Link from "next/navigation";
+import { useRouter } from "next/navigation";
+import { MessageSquare, Send, Sparkles, X, Mic, MicOff, Volume2, VolumeX, ExternalLink, Globe } from "lucide-react";
+import { chatApi } from "@/lib/api";
+import { speechRecognizer, textToSpeech } from "@/lib/speech";
 import { useResumeStore } from "@/store/useResumeStore";
 
 export default function AiCareerAssistant() {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { resume } = useResumeStore();
-  const [messages, setMessages] = useState<Array<{ role: string; content: string; actions?: string[] }>>([
+  const [messages, setMessages] = useState<Array<{ role: string; content: string; actions?: string[]; language?: string }>>([
     {
       role: "assistant",
-      content: `Hello ${resume.personal_info.fullName || "there"}! I'm your AI Career Strategist. Ask me how to tailor your resume for ${resume.target_role || "your target role"}, identify missing keywords, or optimize for recruiters.`,
+      content: `Namaste ${resume.personal_info.fullName || "there"}! I'm your AI Career Coach. You can ask me in English, Hindi (हिन्दी), Hinglish, or other Indian languages.`,
       actions: [
-        "What skills am I missing for this role?",
-        "How can I improve my project descriptions?",
-        "How do I boost my ATS score?",
+        "Improve my summary",
+        "Mera resume check karo",
+        "What skills am I missing?",
+        "Start mock interview",
       ],
+      language: "en",
     },
   ]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
+  const [speakingIndex, setSpeakingIndex] = useState<number | null>(null);
 
   const sendMessage = async (userText: string) => {
-    if (!userText.trim()) return;
+    if (!userText.trim() || isTyping) return;
 
     const newMsgs = [...messages, { role: "user", content: userText }];
     setMessages(newMsgs);
@@ -31,10 +39,16 @@ export default function AiCareerAssistant() {
     setIsTyping(true);
 
     try {
-      const res = await aiApi.careerChat({
-        messages: newMsgs.map((m) => ({ role: m.role, content: m.content })),
+      const res = await chatApi.sendMessage({
+        messages: newMsgs.map((m, idx) => ({
+          id: `m-${idx}`,
+          role: m.role,
+          content: m.content,
+          timestamp: new Date().toISOString(),
+        })),
+        resume_context: resume,
         target_role: resume.target_role,
-        resume_context: `Title: ${resume.title}, Target: ${resume.target_role}, Skills: ${resume.skills.map((s) => s.items.join(", ")).join("; ")}`,
+        language: "auto",
       });
 
       setMessages((prev) => [
@@ -42,7 +56,8 @@ export default function AiCareerAssistant() {
         {
           role: "assistant",
           content: res.reply,
-          actions: res.suggested_actions,
+          actions: res.suggested_actions?.slice(0, 3),
+          language: res.detected_language,
         },
       ]);
     } catch {
@@ -50,12 +65,56 @@ export default function AiCareerAssistant() {
         ...prev,
         {
           role: "assistant",
-          content: `To optimize your candidacy for ${resume.target_role}: 1) Ensure you have quantifiable numbers (e.g. latency reduced by X% or user volume) on your experience bullets, 2) Highlight modern containerization and cloud tools like Docker and AWS, and 3) Keep the single-column ATS layout.`,
-          actions: ["Scan ATS Keywords", "Generate Cover Letter"],
+          content: `To optimize your candidacy for ${resume.target_role}: 1) Quantify your achievements using the XYZ formula, 2) Highlight key tech stacks, and 3) Practice with our AI Voice Mock Interview.`,
+          actions: ["Improve summary", "Open Career Coach"],
+          language: "en",
         },
       ]);
     } finally {
       setIsTyping(false);
+    }
+  };
+
+  const toggleRecording = () => {
+    if (!speechRecognizer.isSupported()) {
+      alert("Microphone recognition not supported in this browser.");
+      return;
+    }
+
+    if (isRecording) {
+      speechRecognizer.stop();
+      setIsRecording(false);
+    } else {
+      textToSpeech.stop();
+      setSpeakingIndex(null);
+      speechRecognizer.start({
+        language: "en-IN",
+        continuous: false,
+        interimResults: false,
+        onStart: () => setIsRecording(true),
+        onResult: (text, isFinal) => {
+          if (isFinal && text) {
+            setIsRecording(false);
+            sendMessage(text);
+          }
+        },
+        onError: () => setIsRecording(false),
+        onEnd: () => setIsRecording(false),
+      });
+    }
+  };
+
+  const toggleSpeak = (idx: number, text: string) => {
+    if (speakingIndex === idx) {
+      textToSpeech.stop();
+      setSpeakingIndex(null);
+    } else {
+      setSpeakingIndex(idx);
+      textToSpeech.speak(text, {
+        language: "en-IN",
+        onEnd: () => setSpeakingIndex(null),
+        onError: () => setSpeakingIndex(null),
+      });
     }
   };
 
@@ -67,27 +126,42 @@ export default function AiCareerAssistant() {
           className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-xl shadow-blue-500/30 hover:scale-105 transition transform"
         >
           <Sparkles className="h-5 w-5" />
-          <span className="text-xs">AI Career Mentor</span>
+          <span className="text-xs">AI Career Coach 🎙️</span>
         </button>
       )}
 
       {isOpen && (
-        <div className="w-[360px] sm:w-[400px] h-[520px] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-6 duration-200">
+        <div className="w-[360px] sm:w-[410px] h-[540px] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-6 duration-200">
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
             <div className="flex items-center gap-2">
               <Sparkles className="h-4 w-4" />
               <div>
-                <h4 className="text-xs font-bold">AI Career & Resume Assistant</h4>
-                <p className="text-[10px] text-blue-100">Live Context: {resume.target_role}</p>
+                <h4 className="text-xs font-bold">AI Career Coach (Voice & Multilingual)</h4>
+                <p className="text-[10px] text-blue-100">Supports 12 Indian Languages & Hinglish</p>
               </div>
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-white/80 hover:text-white p-1"
-            >
-              <X className="h-4 w-4" />
-            </button>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                  router.push("/career-coach");
+                }}
+                title="Open Full Screen Studio"
+                className="text-white/80 hover:text-white p-1 rounded hover:bg-white/10"
+              >
+                <ExternalLink className="h-3.5 w-3.5" />
+              </button>
+              <button
+                onClick={() => {
+                  textToSpeech.stop();
+                  setIsOpen(false);
+                }}
+                className="text-white/80 hover:text-white p-1 rounded hover:bg-white/10"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
           </div>
 
           {/* Messages */}
@@ -98,10 +172,31 @@ export default function AiCareerAssistant() {
                   className={`max-w-[85%] rounded-2xl p-3 text-xs leading-relaxed ${
                     msg.role === "user"
                       ? "bg-blue-600 text-white font-medium rounded-tr-none"
-                      : "bg-white text-slate-800 border border-slate-200 shadow-sm rounded-tl-none"
+                      : "bg-white text-slate-800 border border-slate-200 shadow-sm rounded-tl-none space-y-1.5"
                   }`}
                 >
-                  {msg.content}
+                  <div className="whitespace-pre-line">{msg.content}</div>
+
+                  {msg.role === "assistant" && (
+                    <div className="flex items-center justify-end pt-1">
+                      <button
+                        onClick={() => toggleSpeak(i, msg.content)}
+                        className="text-[10px] text-blue-600 hover:text-blue-800 font-semibold inline-flex items-center gap-1"
+                      >
+                        {speakingIndex === i ? (
+                          <>
+                            <VolumeX className="h-3 w-3 text-rose-600 animate-pulse" />
+                            Stop
+                          </>
+                        ) : (
+                          <>
+                            <Volume2 className="h-3 w-3" />
+                            Listen
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  )}
                 </div>
 
                 {msg.actions && msg.actions.length > 0 && (
@@ -109,7 +204,14 @@ export default function AiCareerAssistant() {
                     {msg.actions.map((act, idx) => (
                       <button
                         key={idx}
-                        onClick={() => sendMessage(act)}
+                        onClick={() => {
+                          if (act === "Open Career Coach" || act === "Start mock interview") {
+                            setIsOpen(false);
+                            router.push("/career-coach");
+                          } else {
+                            sendMessage(act);
+                          }
+                        }}
                         className="text-[10px] font-medium bg-white hover:bg-blue-50 text-blue-700 px-2 py-1 rounded-lg border border-blue-200 transition"
                       >
                         ⚡ {act}
@@ -128,20 +230,34 @@ export default function AiCareerAssistant() {
             )}
           </div>
 
-          {/* Input Bar */}
+          {/* Input Bar with Mic */}
           <div className="p-3 bg-white border-t border-slate-100 flex items-center gap-2">
+            <button
+              type="button"
+              onClick={toggleRecording}
+              className={`p-2 rounded-xl border transition ${
+                isRecording
+                  ? "bg-rose-600 border-rose-600 text-white animate-pulse"
+                  : "border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100"
+              }`}
+              title="Voice Input (Hindi/English/Indian Languages)"
+            >
+              {isRecording ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+            </button>
+
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && sendMessage(input)}
-              placeholder="Ask for advice, bullet rewrites, or ATS tips..."
-              className="flex-1 px-3 py-2 text-xs border border-slate-200 rounded-xl outline-none focus:border-blue-500"
+              placeholder="Type in English, Hindi, or Hinglish..."
+              className="flex-1 px-3 py-2 text-xs border border-slate-200 rounded-xl outline-none focus:border-blue-500 font-medium"
             />
+
             <button
               onClick={() => sendMessage(input)}
               disabled={!input.trim() || isTyping}
-              className="p-2 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white transition"
+              className="p-2 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white transition shadow-xs"
             >
               <Send className="h-3.5 w-3.5" />
             </button>
