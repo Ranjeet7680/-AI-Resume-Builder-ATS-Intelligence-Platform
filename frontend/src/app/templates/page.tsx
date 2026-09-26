@@ -244,6 +244,7 @@ export default function TemplatesPage() {
 
   // Customization drawer tab state
   const [activeStudioTab, setActiveStudioTab] = useState<"catalog" | "customize">("catalog");
+  const [mobileTab, setMobileTab] = useState<"catalog" | "preview">("catalog");
 
   // Fetch templates from API on mount
   useEffect(() => {
@@ -360,9 +361,35 @@ export default function TemplatesPage() {
 
       {/* Main Studio Body: Split View */}
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-8 py-6 flex-1">
+        {/* Mobile View Toggle: Catalog vs Canvas */}
+        <div className="lg:hidden flex items-center justify-between p-2 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-4 border border-slate-200 dark:border-slate-700">
+          <div className="inline-flex rounded-xl bg-white dark:bg-slate-900 p-1 shadow-xs border border-slate-200 dark:border-slate-700 w-full">
+            <button
+              onClick={() => setMobileTab("catalog")}
+              className={`flex-1 py-2 text-xs font-bold rounded-lg transition ${
+                mobileTab === "catalog"
+                  ? "bg-blue-600 text-white shadow-xs"
+                  : "text-slate-600 dark:text-slate-300 hover:text-slate-900"
+              }`}
+            >
+              🎨 24+ Templates ({templates.length})
+            </button>
+            <button
+              onClick={() => setMobileTab("preview")}
+              className={`flex-1 py-2 text-xs font-bold rounded-lg transition ${
+                mobileTab === "preview"
+                  ? "bg-blue-600 text-white shadow-xs"
+                  : "text-slate-600 dark:text-slate-300 hover:text-slate-900"
+              }`}
+            >
+              👁️ Live Canvas Preview
+            </button>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           {/* LEFT COLUMN: Gallery & Customization (7 cols) */}
-          <div className="lg:col-span-7 space-y-5">
+          <div className={`${mobileTab === "catalog" ? "block" : "hidden lg:block"} lg:col-span-7 space-y-5`}>
             {/* View Switcher Tabs: Catalog vs Fine-Tune Design */}
             <div className="flex items-center justify-between bg-white p-2 rounded-xl border border-slate-200">
               <div className="flex items-center gap-2">
@@ -720,7 +747,7 @@ export default function TemplatesPage() {
           </div>
 
           {/* RIGHT COLUMN: Sticky Real-Time Live Preview (5 cols) */}
-          <div className="lg:col-span-5 sticky top-20 space-y-4">
+          <div className={`${mobileTab === "preview" ? "block" : "hidden lg:block"} lg:col-span-5 sticky top-20 space-y-4`}>
             <div className="bg-white rounded-xl border border-slate-200 p-3 shadow-xs">
               <div className="flex items-center justify-between mb-3 px-1">
                 <div>

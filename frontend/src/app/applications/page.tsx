@@ -18,6 +18,7 @@ export default function ApplicationsPage() {
   const [applications, setApplications] = useState<JobApplicationItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [activeMobileStage, setActiveMobileStage] = useState<string>("all");
 
   // New Application Form
   const [company, setCompany] = useState("");
@@ -205,14 +206,44 @@ export default function ApplicationsPage() {
         </div>
       </div>
 
+      {/* Mobile Horizontal Stage Selector */}
+      <div className="md:hidden flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
+        <button
+          onClick={() => setActiveMobileStage("all")}
+          className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition ${
+            activeMobileStage === "all"
+              ? "bg-blue-600 text-white shadow-xs"
+              : "bg-white text-slate-700 border border-slate-200"
+          }`}
+        >
+          All Stages ({applications.length})
+        </button>
+        {STAGES.map((st) => {
+          const count = applications.filter((a) => a.status === st.id).length;
+          return (
+            <button
+              key={st.id}
+              onClick={() => setActiveMobileStage(st.id)}
+              className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition ${
+                activeMobileStage === st.id
+                  ? "bg-blue-600 text-white shadow-xs"
+                  : "bg-white text-slate-700 border border-slate-200"
+              }`}
+            >
+              {st.label} ({count})
+            </button>
+          );
+        })}
+      </div>
+
       {/* Kanban Board Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 items-start">
-        {STAGES.map((stage) => {
+        {STAGES.filter((st) => activeMobileStage === "all" || st.id === activeMobileStage).map((stage) => {
           const stageApps = applications.filter((a) => a.status === stage.id);
           return (
             <div
               key={stage.id}
-              className="bg-slate-50/70 rounded-2xl border border-slate-200 p-3 space-y-3 min-h-[480px]"
+              className="bg-slate-50/70 dark:bg-slate-900/40 rounded-2xl border border-slate-200 dark:border-slate-800 p-3 space-y-3 min-h-[300px] md:min-h-[480px]"
             >
               <div className="flex items-center justify-between px-1">
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-700">

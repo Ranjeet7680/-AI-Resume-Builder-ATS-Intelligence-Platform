@@ -119,26 +119,32 @@ export default function AiCareerAssistant() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-40">
+    <div className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-40">
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-xl shadow-blue-500/30 hover:scale-105 transition transform"
+          className="flex items-center gap-2 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 text-white font-bold shadow-xl shadow-blue-500/30 hover:shadow-glow hover:scale-105 active:scale-95 transition-all transform animate-float"
+          aria-label="Open AI Career Coach"
         >
-          <Sparkles className="h-5 w-5" />
-          <span className="text-xs">AI Career Coach 🎙️</span>
+          <div className="relative">
+            <Sparkles className="h-4 w-4 sm:h-5 sm:w-5" />
+            <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
+          </div>
+          <span className="text-xs tracking-tight">AI Coach 🎙️</span>
         </button>
       )}
 
       {isOpen && (
-        <div className="w-[360px] sm:w-[410px] h-[540px] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-6 duration-200">
+        <div className="w-[calc(100vw-2rem)] sm:w-[410px] h-[520px] max-h-[80vh] bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200/90 dark:border-slate-800 flex flex-col overflow-hidden animate-fade-in-up">
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+          <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 text-white">
             <div className="flex items-center gap-2">
-              <Sparkles className="h-4 w-4" />
+              <div className="p-1.5 rounded-lg bg-white/20 backdrop-blur-xs">
+                <Sparkles className="h-4 w-4" />
+              </div>
               <div>
-                <h4 className="text-xs font-bold">AI Career Coach (Voice & Multilingual)</h4>
-                <p className="text-[10px] text-blue-100">Supports 12 Indian Languages & Hinglish</p>
+                <h4 className="text-xs font-bold leading-tight">AI Career Coach (Voice & Multilingual)</h4>
+                <p className="text-[10px] text-blue-100">12 Indian Languages & Hinglish</p>
               </div>
             </div>
             <div className="flex items-center gap-1">

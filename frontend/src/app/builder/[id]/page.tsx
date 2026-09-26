@@ -47,6 +47,7 @@ export default function ResumeBuilderPage() {
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
   const [copiedLink, setCopiedLink] = useState(false);
   const [candidateMode, setCandidateMode] = useState<"experienced" | "fresher">("experienced");
+  const [mobileView, setMobileView] = useState<"editor" | "preview">("editor");
 
   const openAiEnhancer = (expId: string, bulletIndex: number, text: string) => {
     setSelectedBulletInfo({ expId, bulletIndex, text });
@@ -182,10 +183,40 @@ export default function ResumeBuilderPage() {
         </div>
       </div>
 
+      {/* Mobile Mode Switcher: Form Editor vs Live Preview & ATS */}
+      <div className="lg:hidden flex items-center justify-between p-2.5 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+        <div className="inline-flex rounded-xl bg-white dark:bg-slate-900 p-1 shadow-xs border border-slate-200 dark:border-slate-700 w-full">
+          <button
+            onClick={() => setMobileView("editor")}
+            className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all ${
+              mobileView === "editor"
+                ? "bg-blue-600 text-white shadow-xs"
+                : "text-slate-600 dark:text-slate-300 hover:text-slate-900"
+            }`}
+          >
+            📝 Form Editor
+          </button>
+          <button
+            onClick={() => setMobileView("preview")}
+            className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all ${
+              mobileView === "preview"
+                ? "bg-blue-600 text-white shadow-xs"
+                : "text-slate-600 dark:text-slate-300 hover:text-slate-900"
+            }`}
+          >
+            👁️ Preview & ATS Score
+          </button>
+        </div>
+      </div>
+
       {/* Main Split Layout */}
       <div className="flex-1 flex overflow-hidden">
         {/* Left Column: Form Editor */}
-        <div className="w-full lg:w-1/2 flex flex-col border-r border-slate-200 bg-white overflow-hidden">
+        <div
+          className={`${
+            mobileView === "editor" ? "flex" : "hidden"
+          } lg:flex w-full lg:w-1/2 flex-col border-r border-slate-200 bg-white overflow-hidden`}
+        >
           {/* Section Navigation Tabs */}
           <div className="flex border-b border-slate-200 overflow-x-auto bg-slate-50/60 p-1">
             {[
@@ -531,7 +562,11 @@ export default function ResumeBuilderPage() {
         </div>
 
         {/* Right Column: ATS Score & Live Preview */}
-        <div className="hidden lg:flex w-1/2 flex-col bg-slate-100 p-4 gap-4 overflow-y-auto">
+        <div
+          className={`${
+            mobileView === "preview" ? "flex" : "hidden"
+          } lg:flex w-full lg:w-1/2 flex-col bg-slate-100 p-3 sm:p-4 gap-4 overflow-y-auto`}
+        >
           {/* ATS Gauge Widget */}
           <AtsScoreCard />
 

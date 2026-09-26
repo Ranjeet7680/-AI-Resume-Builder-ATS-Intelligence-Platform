@@ -146,14 +146,25 @@ export default function HomePage() {
           </div>
 
           {/* HERO VISUALIZATION PREVIEW COMPONENT */}
-          <div className="mt-14 max-w-5xl mx-auto rounded-2xl border border-slate-200/80 bg-white shadow-2xl p-4 sm:p-6 overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
-              {/* Left Widget: ATS Gauge & Resume Card */}
-              <div className="md:col-span-6 bg-slate-50 rounded-xl p-4 sm:p-5 border border-slate-200 space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                    Live ATS Intelligence
-                  </span>
+          <div className="mt-14 max-w-5xl mx-auto relative">
+            {/* Floating Highlights Badges */}
+            <div className="hidden sm:flex absolute -top-5 -left-4 z-20 items-center gap-2 bg-white/95 dark:bg-slate-800/95 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xl text-xs font-bold text-slate-800 dark:text-white animate-float">
+              <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
+              <span>🎯 Workday & Greenhouse: 100% Parsed</span>
+            </div>
+            <div className="hidden sm:flex absolute -bottom-5 -right-4 z-20 items-center gap-2 bg-white/95 dark:bg-slate-800/95 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xl text-xs font-bold text-blue-700 dark:text-blue-400 animate-float-slow">
+              <Sparkles className="h-4 w-4 text-blue-600 animate-pulse" />
+              <span>Google XYZ Method: +3x Interview Rate</span>
+            </div>
+
+            <div className="rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl p-4 sm:p-6 overflow-hidden transition-all duration-300 hover:shadow-glow">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+                {/* Left Widget: ATS Gauge & Resume Card */}
+                <div className="md:col-span-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-700 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                      Live ATS Intelligence
+                    </span>
                   <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded-full">
                     <CheckCircle2 className="h-3.5 w-3.5" /> 92% Compatibility
                   </span>
@@ -219,7 +230,8 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* 2. PROBLEM VS SOLUTION */}
       <section className="py-16 sm:py-20 bg-slate-50 border-y border-slate-200">
@@ -492,28 +504,40 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Play Button */}
+            {/* Play Button & Soundwave Indicator */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-3 border-t border-slate-800">
-              <button
-                onClick={handlePlayVoiceDemo}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs shadow-md transition"
-              >
-                {isPlayingVoice ? (
-                  <>
-                    <Volume2 className="h-4 w-4 animate-bounce" /> Playing Audio Demo...
-                  </>
-                ) : (
-                  <>
-                    <Play className="h-4 w-4 fill-current" /> Listen to AI Voice Response
-                  </>
+              <div className="flex items-center gap-3 w-full sm:w-auto">
+                <button
+                  onClick={handlePlayVoiceDemo}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 active:scale-95 text-white font-bold text-xs shadow-md shadow-purple-500/25 transition"
+                >
+                  {isPlayingVoice ? (
+                    <>
+                      <Volume2 className="h-4 w-4 animate-bounce" /> Playing Speech Demo...
+                    </>
+                  ) : (
+                    <>
+                      <Play className="h-4 w-4 fill-current" /> Listen to AI Voice Response
+                    </>
+                  )}
+                </button>
+
+                {isPlayingVoice && (
+                  <div className="flex items-center gap-1 px-3 py-1.5 bg-purple-950/80 rounded-xl border border-purple-500/40 animate-fade-in">
+                    <span className="h-3 w-1 bg-purple-400 rounded-full animate-soundwave [animation-delay:0.1s]" />
+                    <span className="h-4 w-1 bg-purple-300 rounded-full animate-soundwave [animation-delay:0.25s]" />
+                    <span className="h-2 w-1 bg-purple-400 rounded-full animate-soundwave [animation-delay:0.4s]" />
+                    <span className="h-5 w-1 bg-purple-200 rounded-full animate-soundwave [animation-delay:0.15s]" />
+                    <span className="text-[10px] font-bold text-purple-300 ml-1.5">Speaking</span>
+                  </div>
                 )}
-              </button>
+              </div>
 
               <Link
                 href="/career-coach"
-                className="text-xs font-semibold text-purple-400 hover:text-purple-300 flex items-center gap-1"
+                className="text-xs font-semibold text-purple-400 hover:text-purple-300 flex items-center gap-1 group"
               >
-                Launch Full Voice Assistant →
+                Launch Full Voice Assistant <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition" />
               </Link>
             </div>
           </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useResumeStore, defaultCustomization } from "@/store/useResumeStore";
 import { Download, Printer, CheckCircle, AlertTriangle, FileText, User } from "lucide-react";
 import { exportApi } from "@/lib/api";
@@ -27,6 +28,14 @@ export default function ResumePreview({
   };
 
   const { personal_info: p, experiences, education, skills, projects, certifications } = resume;
+
+  const [zoom, setZoom] = useState<number>(scale);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 640 && scale === 1) {
+      setZoom(0.55);
+    }
+  }, [scale]);
 
   const handlePrint = () => {
     window.print();
@@ -142,30 +151,50 @@ export default function ResumePreview({
             )}
           </div>
           <div className="flex items-center gap-1.5 flex-wrap">
+            {/* Zoom Controls */}
+            <div className="inline-flex items-center rounded-lg border border-slate-200 bg-slate-50 p-0.5 text-[11px] font-semibold">
+              {[
+                { label: "Fit", val: 0.55 },
+                { label: "75%", val: 0.75 },
+                { label: "100%", val: 1 },
+              ].map((z) => (
+                <button
+                  key={z.label}
+                  type="button"
+                  onClick={() => setZoom(z.val)}
+                  className={`px-2 py-0.5 rounded transition ${
+                    zoom === z.val ? "bg-white text-blue-600 shadow-xs font-bold" : "text-slate-600 hover:text-slate-900"
+                  }`}
+                >
+                  {z.label}
+                </button>
+              ))}
+            </div>
+
             <button
               onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-xs font-medium text-slate-700 hover:bg-slate-50 transition"
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-slate-300 bg-white text-xs font-medium text-slate-700 hover:bg-slate-50 transition"
               title="Print or Save as PDF"
             >
-              <Printer className="h-3.5 w-3.5" /> PDF / Print
+              <Printer className="h-3.5 w-3.5" /> PDF
             </button>
             {resume.id && (
               <>
                 <a
                   href={exportApi.getDocxExportUrl(resume.id)}
                   download
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-xs font-medium text-slate-700 hover:bg-slate-50 transition"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-slate-300 bg-white text-xs font-medium text-slate-700 hover:bg-slate-50 transition"
                   title="Download Microsoft Word .docx"
                 >
-                  <Download className="h-3.5 w-3.5" /> Word (.docx)
+                  <Download className="h-3.5 w-3.5" /> Word
                 </a>
                 <a
                   href={exportApi.getTxtExportUrl(resume.id)}
                   download
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-xs font-medium text-slate-700 hover:bg-slate-50 transition"
+                  className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-slate-300 bg-white text-xs font-medium text-slate-700 hover:bg-slate-50 transition"
                   title="Download Plain-Text ATS Copy"
                 >
-                  <FileText className="h-3.5 w-3.5" /> Plain Text (.txt)
+                  <FileText className="h-3.5 w-3.5" /> TXT
                 </a>
               </>
             )}
@@ -174,13 +203,14 @@ export default function ResumePreview({
       )}
 
       {/* Rendered Resume Canvas */}
-      <div className="flex-1 overflow-y-auto p-4 sm:p-6 flex justify-center">
+      <div className="flex-1 overflow-x-auto overflow-y-auto p-2 sm:p-6 flex justify-center items-start">
         <div
           id="resume-printable"
           style={{
             fontFamily: getFontFamily(config.font_family),
-            transform: scale !== 1 ? `scale(${scale})` : undefined,
+            transform: zoom !== 1 ? `scale(${zoom})` : undefined,
             transformOrigin: "top center",
+            marginBottom: zoom < 1 ? `-${(1 - zoom) * 850}px` : undefined,
           }}
           className={`w-full max-w-[820px] bg-white min-h-[1050px] shadow-lg border border-slate-200 text-slate-900 transition-all ${padding} ${fontSizes.body}`}
         >
