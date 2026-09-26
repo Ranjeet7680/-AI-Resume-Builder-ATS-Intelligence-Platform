@@ -1,3 +1,4 @@
+import uuid
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
@@ -97,7 +98,7 @@ async def tailor_resume_for_job(
             certifications=tailored_data["certifications"],
             ats_score=tailor_result["projected_ats_score"],
             is_primary=False,
-            public_slug=f"tailored-{current_user.id[:8]}-{payload.job_title.lower().replace(' ', '-')[:20]}"
+            public_slug=f"tailored-{current_user.id[:6]}-{payload.job_title.lower().replace(' ', '-')[:16]}-{uuid.uuid4().hex[:6]}"
         )
         db.add(new_resume)
         await db.commit()

@@ -15,8 +15,8 @@ class Settings(BaseSettings):
         "http://localhost:8000",
     ]
 
-    # Database & Cache
-    DATABASE_URL: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/resume_builder"
+    # Database & Cache (Defaults to local SQLite async; overridden by Postgres in Docker or .env)
+    DATABASE_URL: str = "sqlite+aiosqlite:///./resume_builder.db"
     REDIS_URL: str = "redis://localhost:6379/0"
 
     # Security & JWT

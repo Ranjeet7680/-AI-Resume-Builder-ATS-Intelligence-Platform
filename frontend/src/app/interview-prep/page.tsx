@@ -47,7 +47,7 @@ export default function InterviewPrepPage() {
         question: "Tell me about a high-pressure production bug or system degradation you resolved under tight deadlines.",
         context_source: "Standard Senior Engineering Screening",
         sample_answer_framework: "Situation (sudden 500 errors during traffic peak) ➔ Task (isolate root cause and restore SLA) ➔ Action (inspected Sentry logs, isolated faulty connection pool, applied hotfix rollback) ➔ Result (restored in 15 mins + wrote blameless postmortem).",
-        tips="Focus heavily on the systematic diagnostic process and blameless retrospective.",
+        tips: "Focus heavily on the systematic diagnostic process and blameless retrospective.",
       },
     ],
     project_questions: [
@@ -56,7 +56,7 @@ export default function InterviewPrepPage() {
         question: "In your 'Real-time Vector Search Engine' project, what made you select pgvector over dedicated vector stores like Pinecone or Qdrant?",
         context_source: "Resume Project: Real-time Vector Search Engine",
         sample_answer_framework: "1) Operational simplicity of keeping relational and vector embeddings in the same ACID-compliant database, 2) Benchmarked sub-15ms retrieval across 2M rows, 3) Eliminated dual-write sync complexity.",
-        tips="Defend your architectural trade-offs using real constraints like simplicity, latency, and operational cost.",
+        tips: "Defend your architectural trade-offs using real constraints like simplicity, latency, and operational cost.",
       },
     ],
   });

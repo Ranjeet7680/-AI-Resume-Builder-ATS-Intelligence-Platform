@@ -32,7 +32,7 @@ class TailorResumeRequest(BaseModel):
     resume_id: Optional[str] = None
     resume_data: Optional[ResumeBase] = None
     job_description: str
-    job_title: str
+    job_title: Optional[str] = "Software Engineer"
     company: Optional[str] = None
     save_as_new_version: bool = True
     new_version_title: Optional[str] = None
