@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Card Background -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Accent Glow -->
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0a66c2" />
+      <stop offset="100%" stop-color="#004182" />
+    </linearGradient>
+
+    <!-- Drop Shadows and Filters -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0a66c2" />
+    </marker>
+  </defs>
+
+  <style>
+    .title-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 20px; font-weight: 700; fill: #ffffff; }
+    .desc-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 11px; fill: #94a3b8; }
+    .badge-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 800; fill: #0a66c2; letter-spacing: 1.5px; }
+    .node-title { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 600; fill: #f8fafc; }
+    .node-desc { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 10px; fill: #94a3b8; }
+    .flow-label { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 9px; fill: #38bdf8; font-weight: 500; }
+
+    /* Animations */
+    @keyframes pulseGlow {
+      0% { stroke-opacity: 0.4; }
+      50% { stroke-opacity: 1; }
+      100% { stroke-opacity: 0.4; }
+    }
+    @keyframes flowLine {
+      0% { stroke-dashoffset: 40; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes indicatorPulse {
+      0% { r: 3px; opacity: 1; }
+      50% { r: 6px; opacity: 0.4; }
+      100% { r: 3px; opacity: 1; }
+    }
+
+    .animated-border { stroke: #0a66c2; animation: pulseGlow 3s infinite ease-in-out; }
+    .animated-flow { stroke: #0a66c2; stroke-dasharray: 6, 6; animation: flowLine 1.8s linear infinite; }
+    .pulse-dot { fill: #0a66c2; animation: indicatorPulse 2s infinite ease-in-out; }
+  </style>
+
+  <!-- Container Box -->
+  <rect x="10" y="10" width="980" height="500" rx="16" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2" />
+  <rect x="10" y="10" width="980" height="500" rx="16" fill="none" class="animated-border" stroke-width="1.5" />
+
+  <!-- Header Section -->
+  <g transform="translate(35, 30)">
+    <rect x="0" y="0" width="170" height="22" rx="11" fill="#0f172a" stroke="#0a66c2" stroke-width="1.2" />
+    <circle cx="12" cy="11" r="4" class="pulse-dot" />
+    <text x="24" y="14" class="badge-text">AUTHENTICATION & OAUTH 2.0</text>
+
+    <text x="0" y="44" class="title-text">LinkedIn OpenID Connect (OIDC) & Security Flow</text>
+    <text x="0" y="60" class="desc-text">Secure token exchange flow using openid, profile, and email scopes with cryptographic state validation.</text>
+  </g>
+
+  <!-- Flow Lines (Connections) -->
+  <g id="connections">
+    <line x1="220" y1="160" x2="260" y2="160" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="205.0" y="148.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="240.0" y="159.0" text-anchor="middle" class="flow-label">GET /oauth/v2/auth</text>
+    <line x1="440" y1="160" x2="480" y2="160" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="425.0" y="148.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="460.0" y="159.0" text-anchor="middle" class="flow-label">Auth Code</text>
+    <line x1="660" y1="160" x2="700" y2="160" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="645.0" y="148.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="680.0" y="159.0" text-anchor="middle" class="flow-label">Backend Exchange</text>
+    <line x1="785" y1="200" x2="785" y2="280" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="750.0" y="228.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="785.0" y="239.0" text-anchor="middle" class="flow-label">Access Token</text>
+    <line x1="700" y1="320" x2="660" y2="320" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="645.0" y="308.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="680.0" y="319.0" text-anchor="middle" class="flow-label">User Claims</text>
+    <line x1="480" y1="320" x2="440" y2="320" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="425.0" y="308.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="460.0" y="319.0" text-anchor="middle" class="flow-label">JWT Minted</text>
+    <line x1="260" y1="320" x2="220" y2="320" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="205.0" y="308.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="240.0" y="319.0" text-anchor="middle" class="flow-label">Session Set</text>
+  </g>
+
+  <!-- Node Elements -->
+  <g id="nodes">
+    <g transform="translate(40, 120)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="180" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#38bdf8" />
+      <text x="14" y="24" class="node-title">1. Candidate Browser</text>
+      <text x="14" y="44" class="node-desc">Initiates 'Sign in with</text>
+      <text x="14" y="58" class="node-desc">LinkedIn' with CSRF state token</text>
+    </g>
+    <g transform="translate(260, 120)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="180" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#0a66c2" />
+      <text x="14" y="24" class="node-title">2. LinkedIn Auth Server</text>
+      <text x="14" y="44" class="node-desc">Authenticates user & requests</text>
+      <text x="14" y="58" class="node-desc">profile consent</text>
+    </g>
+    <g transform="translate(480, 120)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="180" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#f59e0b" />
+      <text x="14" y="24" class="node-title">3. Auth Code Redirect</text>
+      <text x="14" y="44" class="node-desc">Redirects to</text>
+      <text x="14" y="58" class="node-desc">/api/auth/linkedin/callback with ...</text>
+    </g>
+    <g transform="translate(700, 120)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="170" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#10b981" />
+      <text x="14" y="24" class="node-title">4. FastAPI Token Exchange</text>
+      <text x="14" y="44" class="node-desc">Server-to-server POST with</text>
+      <text x="14" y="58" class="node-desc">client_secret to LinkedIn</text>
+    </g>
+    <g transform="translate(700, 280)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="170" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#a855f7" />
+      <text x="14" y="24" class="node-title">5. Profile Ingestion</text>
+      <text x="14" y="44" class="node-desc">Extracts sub, name, email &</text>
+      <text x="14" y="58" class="node-desc">verified photo URI</text>
+    </g>
+    <g transform="translate(480, 280)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="180" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#ec4899" />
+      <text x="14" y="24" class="node-title">6. DB User Upsert</text>
+      <text x="14" y="44" class="node-desc">Upserts user record & generates</text>
+      <text x="14" y="58" class="node-desc">secure session JWT</text>
+    </g>
+    <g transform="translate(260, 280)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="180" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#06b6d4" />
+      <text x="14" y="24" class="node-title">7. HttpOnly Cookie</text>
+      <text x="14" y="44" class="node-desc">Returns secure HttpOnly cookie</text>
+      <text x="14" y="58" class="node-desc">& redirects to /dashboard</text>
+    </g>
+    <g transform="translate(40, 280)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="180" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#22c55e" />
+      <text x="14" y="24" class="node-title">8. Authenticated OS</text>
+      <text x="14" y="44" class="node-desc">Candidate accesses resumes, AI</text>
+      <text x="14" y="58" class="node-desc">tools & cloud storage</text>
+    </g>
+  </g>
+</svg>

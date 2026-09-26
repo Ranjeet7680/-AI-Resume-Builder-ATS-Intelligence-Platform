@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Card Background -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Accent Glow -->
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ec4899" />
+      <stop offset="100%" stop-color="#db2777" />
+    </linearGradient>
+
+    <!-- Drop Shadows and Filters -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#ec4899" />
+    </marker>
+  </defs>
+
+  <style>
+    .title-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 20px; font-weight: 700; fill: #ffffff; }
+    .desc-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 11px; fill: #94a3b8; }
+    .badge-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 800; fill: #ec4899; letter-spacing: 1.5px; }
+    .node-title { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 600; fill: #f8fafc; }
+    .node-desc { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 10px; fill: #94a3b8; }
+    .flow-label { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 9px; fill: #38bdf8; font-weight: 500; }
+
+    /* Animations */
+    @keyframes pulseGlow {
+      0% { stroke-opacity: 0.4; }
+      50% { stroke-opacity: 1; }
+      100% { stroke-opacity: 0.4; }
+    }
+    @keyframes flowLine {
+      0% { stroke-dashoffset: 40; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes indicatorPulse {
+      0% { r: 3px; opacity: 1; }
+      50% { r: 6px; opacity: 0.4; }
+      100% { r: 3px; opacity: 1; }
+    }
+
+    .animated-border { stroke: #ec4899; animation: pulseGlow 3s infinite ease-in-out; }
+    .animated-flow { stroke: #ec4899; stroke-dasharray: 6, 6; animation: flowLine 1.8s linear infinite; }
+    .pulse-dot { fill: #ec4899; animation: indicatorPulse 2s infinite ease-in-out; }
+  </style>
+
+  <!-- Container Box -->
+  <rect x="10" y="10" width="980" height="500" rx="16" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2" />
+  <rect x="10" y="10" width="980" height="500" rx="16" fill="none" class="animated-border" stroke-width="1.5" />
+
+  <!-- Header Section -->
+  <g transform="translate(35, 30)">
+    <rect x="0" y="0" width="170" height="22" rx="11" fill="#0f172a" stroke="#ec4899" stroke-width="1.2" />
+    <circle cx="12" cy="11" r="4" class="pulse-dot" />
+    <text x="24" y="14" class="badge-text">AI BULLET OPTIMIZATION</text>
+
+    <text x="0" y="44" class="title-text">Google XYZ Achievement Rewriter & STAR Method</text>
+    <text x="0" y="60" class="desc-text">Transforms passive job duties into quantified business accomplishments: 'Accomplished [X], measured by [Y], by doing [Z]'.</text>
+  </g>
+
+  <!-- Flow Lines (Connections) -->
+  <g id="connections">
+    <line x1="300" y1="170" x2="350" y2="170" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="290.0" y="158.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="325.0" y="169.0" text-anchor="middle" class="flow-label">Passive Input</text>
+    <line x1="560" y1="170" x2="620" y2="170" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="555.0" y="158.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="590.0" y="169.0" text-anchor="middle" class="flow-label">Feature Extraction</text>
+    <line x1="735" y1="210" x2="455" y2="270" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="560.0" y="228.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="595.0" y="239.0" text-anchor="middle" class="flow-label">Refinement</text>
+    <line x1="455" y1="350" x2="455" y2="390" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="420.0" y="358.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="455.0" y="369.0" text-anchor="middle" class="flow-label">Final Polish</text>
+  </g>
+
+  <!-- Node Elements -->
+  <g id="nodes">
+    <g transform="translate(60, 130)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="240" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#ef4444" />
+      <text x="14" y="24" class="node-title">Original Passive Bullet</text>
+      <text x="14" y="44" class="node-desc">'Responsible for optimizing</text>
+      <text x="14" y="58" class="node-desc">database queries and backend APIs'</text>
+    </g>
+    <g transform="translate(350, 130)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="210" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#6366f1" />
+      <text x="14" y="24" class="node-title">AI Semantic Analyzer</text>
+      <text x="14" y="44" class="node-desc">Deconstructs bullet into:</text>
+      <text x="14" y="58" class="node-desc">Action, Metric, Methodology</text>
+    </g>
+    <g transform="translate(620, 130)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="230" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#a855f7" />
+      <text x="14" y="24" class="node-title">Google XYZ Formula</text>
+      <text x="14" y="44" class="node-desc">'Accomplished [X], as measured</text>
+      <text x="14" y="58" class="node-desc">by [Y], by doing [Z]'</text>
+    </g>
+    <g transform="translate(350, 270)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="210" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#f59e0b" />
+      <text x="14" y="24" class="node-title">STAR Interactive Builder</text>
+      <text x="14" y="44" class="node-desc">Guided modal prompt for</text>
+      <text x="14" y="58" class="node-desc">Situation, Task, Action, Result</text>
+    </g>
+    <g transform="translate(140, 390)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="640" height="75" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="75" rx="2" fill="#22c55e" />
+      <text x="14" y="24" class="node-title">Optimized FAANG Bullet</text>
+      <text x="14" y="44" class="node-desc">'Accelerated API query</text>
+      <text x="14" y="58" class="node-desc">performance by 42% (Y), reducing ...</text>
+    </g>
+  </g>
+</svg>

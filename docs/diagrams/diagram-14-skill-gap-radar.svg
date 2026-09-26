@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Card Background -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Accent Glow -->
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+
+    <!-- Drop Shadows and Filters -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f59e0b" />
+    </marker>
+  </defs>
+
+  <style>
+    .title-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 20px; font-weight: 700; fill: #ffffff; }
+    .desc-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 11px; fill: #94a3b8; }
+    .badge-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 800; fill: #f59e0b; letter-spacing: 1.5px; }
+    .node-title { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 600; fill: #f8fafc; }
+    .node-desc { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 10px; fill: #94a3b8; }
+    .flow-label { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 9px; fill: #38bdf8; font-weight: 500; }
+
+    /* Animations */
+    @keyframes pulseGlow {
+      0% { stroke-opacity: 0.4; }
+      50% { stroke-opacity: 1; }
+      100% { stroke-opacity: 0.4; }
+    }
+    @keyframes flowLine {
+      0% { stroke-dashoffset: 40; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes indicatorPulse {
+      0% { r: 3px; opacity: 1; }
+      50% { r: 6px; opacity: 0.4; }
+      100% { r: 3px; opacity: 1; }
+    }
+
+    .animated-border { stroke: #f59e0b; animation: pulseGlow 3s infinite ease-in-out; }
+    .animated-flow { stroke: #f59e0b; stroke-dasharray: 6, 6; animation: flowLine 1.8s linear infinite; }
+    .pulse-dot { fill: #f59e0b; animation: indicatorPulse 2s infinite ease-in-out; }
+  </style>
+
+  <!-- Container Box -->
+  <rect x="10" y="10" width="980" height="500" rx="16" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2" />
+  <rect x="10" y="10" width="980" height="500" rx="16" fill="none" class="animated-border" stroke-width="1.5" />
+
+  <!-- Header Section -->
+  <g transform="translate(35, 30)">
+    <rect x="0" y="0" width="170" height="22" rx="11" fill="#0f172a" stroke="#f59e0b" stroke-width="1.2" />
+    <circle cx="12" cy="11" r="4" class="pulse-dot" />
+    <text x="24" y="14" class="badge-text">CAREER ROADMAP & RADAR</text>
+
+    <text x="0" y="44" class="title-text">Dynamic Skill Gap Radar & 90-Day Learning Roadmap</text>
+    <text x="0" y="60" class="desc-text">Visualizes candidate competency vs target role benchmarks and charts a prioritized 90-day learning path.</text>
+  </g>
+
+  <!-- Flow Lines (Connections) -->
+  <g id="connections">
+    <line x1="250" y1="170" x2="320" y2="220" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="250.0" y="183.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="285.0" y="194.0" text-anchor="middle" class="flow-label">Current Skills</text>
+    <line x1="250" y1="320" x2="320" y2="260" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="250.0" y="278.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="285.0" y="289.0" text-anchor="middle" class="flow-label">Target Benchmark</text>
+    <line x1="540" y1="220" x2="600" y2="170" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="535.0" y="183.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="570.0" y="194.0" text-anchor="middle" class="flow-label">Radar Data</text>
+    <line x1="540" y1="260" x2="600" y2="320" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="535.0" y="278.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="570.0" y="289.0" text-anchor="middle" class="flow-label">Milestone Plan</text>
+  </g>
+
+  <!-- Node Elements -->
+  <g id="nodes">
+    <g transform="translate(50, 130)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="200" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#38bdf8" />
+      <text x="14" y="24" class="node-title">Candidate Skill Profile</text>
+      <text x="14" y="44" class="node-desc">Current verified languages,</text>
+      <text x="14" y="58" class="node-desc">libraries & cloud tools</text>
+    </g>
+    <g transform="translate(50, 280)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="200" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#6366f1" />
+      <text x="14" y="24" class="node-title">Role Competency Matrix</text>
+      <text x="14" y="44" class="node-desc">Aggregated industry benchmark</text>
+      <text x="14" y="58" class="node-desc">for target job level</text>
+    </g>
+    <g transform="translate(320, 200)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="220" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#f59e0b" />
+      <text x="14" y="24" class="node-title">Delta Gap Calculator</text>
+      <text x="14" y="44" class="node-desc">Calculates proficiency deficits</text>
+      <text x="14" y="58" class="node-desc">across 6 competency axes</text>
+    </g>
+    <g transform="translate(600, 130)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="240" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#a855f7" />
+      <text x="14" y="24" class="node-title">Visual Radar Chart</text>
+      <text x="14" y="44" class="node-desc">Overlaid Spider/Radar diagram</text>
+      <text x="14" y="58" class="node-desc">showing exact skill coverage</text>
+    </g>
+    <g transform="translate(600, 280)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="240" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#22c55e" />
+      <text x="14" y="24" class="node-title">90-Day Execution Roadmap</text>
+      <text x="14" y="44" class="node-desc">Week 1-4: Core Gaps • Week 5-8:</text>
+      <text x="14" y="58" class="node-desc">Projects • Week 9-12: System Design</text>
+    </g>
+  </g>
+</svg>

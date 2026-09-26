@@ -2,31 +2,73 @@
 
 <div align="center">
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Python](https://img.shields.io/badge/python-3.11+-blue.svg?logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.111.0-009688.svg?logo=fastapi&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-14.2.5-black.svg?logo=next.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6.svg?logo=typescript&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC.svg?logo=tailwind-css&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16%2Bpgvector-336791.svg?logo=postgresql&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Compose-2496ED.svg?logo=docker&logoColor=white)
-![Vercel](https://img.shields.io/badge/Deploy-Vercel-black.svg?logo=vercel&logoColor=white)
+<img src="./docs/readme-hero-banner.svg" alt="AI Resume Builder & ATS Intelligence Platform" width="100%" />
 
-**An Enterprise-Grade AI Career Operating System (SaaS OS) & ATS Optimization Engine**
+<br/><br/>
 
-*Built with Next.js 14 App Router, FastAPI Async, PostgreSQL 16 + pgvector, LinkedIn OIDC, 24+ Professional Templates, and Conversational Voice AI supporting 12 Indian Languages.*
+[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg?style=flat-square&logo=git)](https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Python: 3.11+](https://img.shields.io/badge/Python-3.11+-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![FastAPI: 0.111.0](https://img.shields.io/badge/FastAPI-0.111.0-009688.svg?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![Next.js: 14.2](https://img.shields.io/badge/Next.js-14.2-black.svg?style=flat-square&logo=next.js&logoColor=white)](https://nextjs.org)
+[![TypeScript: 5.0](https://img.shields.io/badge/TypeScript-5.0-3178C6.svg?style=flat-square&logo=typescript&logoColor=white)](https://typescriptlang.org)
+[![TailwindCSS: 3.4](https://img.shields.io/badge/Tailwind-3.4-38B2AC.svg?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![PostgreSQL: 16+pgvector](https://img.shields.io/badge/PostgreSQL-16%2Bpgvector-336791.svg?style=flat-square&logo=postgresql&logoColor=white)](https://github.com/pgvector/pgvector)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED.svg?style=flat-square&logo=docker&logoColor=white)](https://docker.com)
+[![Deploy: Vercel](https://img.shields.io/badge/Deploy-Vercel-black.svg?style=flat-square&logo=vercel&logoColor=white)](https://vercel.com)
+[![Official Wiki: 22+ Diagrams](https://img.shields.io/badge/Wiki-22+_Animated_Diagrams-7c3aed.svg?style=flat-square&logo=gitbook&logoColor=white)](https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform/wiki)
 
-[🚀 Live Demo](#-live-demo--preview) • [✨ Key Features](#-features-and-capabilities) • [🏗️ Architecture](#️-system-architecture) • [⚡ Quickstart](#-quickstart-local-development) • [☁️ Deploy to Vercel](#-deployment-guide-vercel--backend) • [📖 API Reference](#-api-endpoints-reference)
+<br/>
+
+### 🎯 The Autonomous AI Career Operating System & ATS Placement Engine
+**Accelerate from Zero to FAANG/Tier-1 Offer with LinkedIn OIDC, 24+ Multi-Template Studio, Google XYZ Rewriter, 12 Indian Languages Voice AI, and Deterministic ATS Diagnostics.**
+
+<br/>
+
+<p>
+  <a href="https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform/wiki">
+    <img src="https://img.shields.io/badge/📚_Official_Wiki-22+_Animated_Diagrams-7c3aed?style=for-the-badge&logo=gitbook&logoColor=white" alt="Official Wiki" />
+  </a>
+  <a href="#-quickstart-local-development">
+    <img src="https://img.shields.io/badge/⚡_Quickstart-Run_in_5_Mins-0284c7?style=for-the-badge&logo=fastapi&logoColor=white" alt="Quickstart" />
+  </a>
+  <a href="#-deployment-guide-vercel--backend">
+    <img src="https://img.shields.io/badge/☁️_Deploy-Vercel_%2B_Render-059669?style=for-the-badge&logo=vercel&logoColor=white" alt="Deploy" />
+  </a>
+  <a href="#-api-endpoints-reference">
+    <img src="https://img.shields.io/badge/📖_REST_APIs-FastAPI_Docs-db2777?style=for-the-badge&logo=swagger&logoColor=white" alt="API Docs" />
+  </a>
+</p>
 
 </div>
 
 ---
 
-## 🎨 Interactive Architecture Diagram
+## 📚 Official Documentation Wiki (22+ Animated Diagrams)
+
+> 🚀 **Deep-dive architectural documentation is published on the [Official GitHub Wiki](https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform/wiki).**
+> Every subsystem features dedicated animated SVG diagrams, architectural workflows, and step-by-step guides:
+
+| Wiki Module | Core Topics | Animated Diagrams |
+|---|---|---|
+| [**01. System Architecture**](https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform/wiki/01-System-Architecture) | Master System Overview • Candidate Lifecycle • Gemini 1.5 Pro/Flash Routing | [Overview](./docs/diagrams/diagram-01-system-overview.svg), [Lifecycle](./docs/diagrams/diagram-21-user-journey-lifecycle.svg), [AI Orchestrator](./docs/diagrams/diagram-18-ai-orchestration-gemini.svg) |
+| [**02. Authentication & Security**](https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform/wiki/02-Authentication-and-Security) | LinkedIn OpenID Connect (OIDC) • HttpOnly Sessions • RBAC • Row-Level Security | [LinkedIn OIDC](./docs/diagrams/diagram-02-auth-oidc-flow.svg), [Security](./docs/diagrams/diagram-17-multi-tenant-security.svg) |
+| [**03. Resume Ingestion & Parsing**](https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform/wiki/03-Resume-Ingestion-and-Parsing) | PyMuPDF Ingestion • Zero-Hallucination Fact Store • Vector PDF & DOCX Export | [Parser Pipeline](./docs/diagrams/diagram-03-pdf-parser-pipeline.svg), [Export Engine](./docs/diagrams/diagram-15-export-pdf-docx-engine.svg) |
+| [**04. ATS Scoring & Job Match**](https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform/wiki/04-ATS-Scoring-and-Job-Matching) | Hybrid ATS Engine (30% Keyword, 20% Hard Skills, 20% STAR) • Cosine Similarity | [ATS Hybrid Scorer](./docs/diagrams/diagram-04-ats-hybrid-scorer.svg), [Job Matcher](./docs/diagrams/diagram-07-job-description-matcher.svg) |
+| [**05. AI Content Optimization**](https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform/wiki/05-AI-Content-Optimization) | Google XYZ Rewriter • STAR Assistant • Contextual Multi-Tone Cover Letters | [Google XYZ Rewriter](./docs/diagrams/diagram-05-google-xyz-rewriter.svg), [Cover Letter AI](./docs/diagrams/diagram-13-cover-letter-generator.svg) |
+| [**06. Multi-Template Studio**](https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform/wiki/06-Multi-Template-Studio) | Decoupled Presentation • 24+ Designs across 7 Industry Families • Live Themes | [Template Engine](./docs/diagrams/diagram-06-template-rendering-engine.svg) |
+| [**07. Voice AI & Interview Prep**](https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform/wiki/07-Voice-AI-and-Interview-Prep) | Real-time Voice Coach (12 Indian Languages) • Mock Interview Evaluator | [Voice AI Flow](./docs/diagrams/diagram-08-career-coach-voice-flow.svg), [Mock Simulator](./docs/diagrams/diagram-09-mock-interview-simulator.svg) |
+| [**08. Profile Optimizers**](https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform/wiki/08-External-Profile-Optimizers) | LinkedIn 360° Profile Audit • GitHub Developer Footprint & Proof-of-Work | [LinkedIn Optimizer](./docs/diagrams/diagram-10-linkedin-optimizer.svg), [GitHub Analyzer](./docs/diagrams/diagram-11-github-repo-analyzer.svg) |
+| [**09. Kanban & Career Roadmap**](https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform/wiki/09-Application-Kanban-and-Roadmap) | Application Pipeline Kanban • 90-Day Skill Gap Radar & Milestone Execution | [Kanban Pipeline](./docs/diagrams/diagram-12-kanban-application-tracker.svg), [Skill Gap Radar](./docs/diagrams/diagram-14-skill-gap-radar.svg) |
+| [**10. Database, DevOps & SaaS Admin**](https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform/wiki/10-Admin-DevOps-and-Database) | PostgreSQL 16 + pgvector ER • CI/CD Pipeline • Admin Telemetry & Tip Engine | [Database Schema](./docs/diagrams/diagram-16-database-schema-er.svg), [Admin Telemetry](./docs/diagrams/diagram-19-admin-telemetry-engine.svg), [CI/CD](./docs/diagrams/diagram-20-ci-cd-devops-pipeline.svg), [Promo Tips](./docs/diagrams/diagram-22-promotions-tips-engine.svg) |
+
+---
+
+## 🎨 Interactive Master Architecture Diagram
 
 <div align="center">
 
-<img src="./docs/architecture-diagram.svg" alt="AI Resume Builder & Career OS Architecture Diagram" width="100%" />
+<img src="./docs/diagrams/diagram-01-system-overview.svg" alt="AI Resume Builder & Career OS Master Architecture" width="100%" />
 
 </div>
 

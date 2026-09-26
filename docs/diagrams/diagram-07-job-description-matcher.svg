@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Card Background -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Accent Glow -->
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#0891b2" />
+    </linearGradient>
+
+    <!-- Drop Shadows and Filters -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#06b6d4" />
+    </marker>
+  </defs>
+
+  <style>
+    .title-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 20px; font-weight: 700; fill: #ffffff; }
+    .desc-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 11px; fill: #94a3b8; }
+    .badge-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 800; fill: #06b6d4; letter-spacing: 1.5px; }
+    .node-title { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 600; fill: #f8fafc; }
+    .node-desc { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 10px; fill: #94a3b8; }
+    .flow-label { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 9px; fill: #38bdf8; font-weight: 500; }
+
+    /* Animations */
+    @keyframes pulseGlow {
+      0% { stroke-opacity: 0.4; }
+      50% { stroke-opacity: 1; }
+      100% { stroke-opacity: 0.4; }
+    }
+    @keyframes flowLine {
+      0% { stroke-dashoffset: 40; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes indicatorPulse {
+      0% { r: 3px; opacity: 1; }
+      50% { r: 6px; opacity: 0.4; }
+      100% { r: 3px; opacity: 1; }
+    }
+
+    .animated-border { stroke: #06b6d4; animation: pulseGlow 3s infinite ease-in-out; }
+    .animated-flow { stroke: #06b6d4; stroke-dasharray: 6, 6; animation: flowLine 1.8s linear infinite; }
+    .pulse-dot { fill: #06b6d4; animation: indicatorPulse 2s infinite ease-in-out; }
+  </style>
+
+  <!-- Container Box -->
+  <rect x="10" y="10" width="980" height="500" rx="16" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2" />
+  <rect x="10" y="10" width="980" height="500" rx="16" fill="none" class="animated-border" stroke-width="1.5" />
+
+  <!-- Header Section -->
+  <g transform="translate(35, 30)">
+    <rect x="0" y="0" width="170" height="22" rx="11" fill="#0f172a" stroke="#06b6d4" stroke-width="1.2" />
+    <circle cx="12" cy="11" r="4" class="pulse-dot" />
+    <text x="24" y="14" class="badge-text">JOB MATCH & VECTOR GAP</text>
+
+    <text x="0" y="44" class="title-text">Semantic Job Description Analyzer & Gap Matcher</text>
+    <text x="0" y="60" class="desc-text">Vector-based semantic comparison between resume and job description to identify keyword and skill gaps.</text>
+  </g>
+
+  <!-- Flow Lines (Connections) -->
+  <g id="connections">
+    <line x1="250" y1="170" x2="300" y2="170" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="240.0" y="158.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="275.0" y="169.0" text-anchor="middle" class="flow-label">Text Stream</text>
+    <line x1="410" y1="210" x2="410" y2="280" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="375.0" y="233.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="410.0" y="244.0" text-anchor="middle" class="flow-label">Keyword Matrix</text>
+    <line x1="520" y1="170" x2="580" y2="220" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="515.0" y="183.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="550.0" y="194.0" text-anchor="middle" class="flow-label">Target Vector</text>
+    <line x1="520" y1="320" x2="580" y2="260" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="515.0" y="278.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="550.0" y="289.0" text-anchor="middle" class="flow-label">Candidate Vector</text>
+    <line x1="780" y1="220" x2="820" y2="170" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="765.0" y="183.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="800.0" y="194.0" text-anchor="middle" class="flow-label">Overall Overlap</text>
+    <line x1="780" y1="260" x2="820" y2="310" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="765.0" y="273.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="800.0" y="284.0" text-anchor="middle" class="flow-label">Gap Deficits</text>
+  </g>
+
+  <!-- Node Elements -->
+  <g id="nodes">
+    <g transform="translate(50, 130)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="200" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#64748b" />
+      <text x="14" y="24" class="node-title">Raw Job Description</text>
+      <text x="14" y="44" class="node-desc">Paste job posting text or URL</text>
+      <text x="14" y="58" class="node-desc">from job board</text>
+    </g>
+    <g transform="translate(300, 130)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="220" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#0ea5e9" />
+      <text x="14" y="24" class="node-title">JD Entity Extractor</text>
+      <text x="14" y="44" class="node-desc">Extracts must-have skills,</text>
+      <text x="14" y="58" class="node-desc">nice-to-haves & years of experience</text>
+    </g>
+    <g transform="translate(300, 280)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="220" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#6366f1" />
+      <text x="14" y="24" class="node-title">Candidate Resume Vector</text>
+      <text x="14" y="44" class="node-desc">pgvector embedding of candidate</text>
+      <text x="14" y="58" class="node-desc">profile facts</text>
+    </g>
+    <g transform="translate(580, 200)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="200" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#a855f7" />
+      <text x="14" y="24" class="node-title">Cosine Similarity Matcher</text>
+      <text x="14" y="44" class="node-desc">Calculates semantic overlap and</text>
+      <text x="14" y="58" class="node-desc">keyword match %</text>
+    </g>
+    <g transform="translate(820, 130)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="140" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#22c55e" />
+      <text x="14" y="24" class="node-title">Match Score: 87%</text>
+      <text x="14" y="44" class="node-desc">Strong fit for Senior Full</text>
+      <text x="14" y="58" class="node-desc">Stack Engineer role</text>
+    </g>
+    <g transform="translate(820, 270)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="140" height="90" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="90" rx="2" fill="#ef4444" />
+      <text x="14" y="24" class="node-title">Identified Skill Gaps</text>
+      <text x="14" y="44" class="node-desc">Missing: Kubernetes, GraphQL,</text>
+      <text x="14" y="58" class="node-desc">System Design metrics</text>
+    </g>
+  </g>
+</svg>

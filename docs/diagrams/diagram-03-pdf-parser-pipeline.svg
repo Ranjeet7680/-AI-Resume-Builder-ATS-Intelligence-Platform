@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Card Background -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Accent Glow -->
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+
+    <!-- Drop Shadows and Filters -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981" />
+    </marker>
+  </defs>
+
+  <style>
+    .title-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 20px; font-weight: 700; fill: #ffffff; }
+    .desc-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 11px; fill: #94a3b8; }
+    .badge-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 800; fill: #10b981; letter-spacing: 1.5px; }
+    .node-title { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 600; fill: #f8fafc; }
+    .node-desc { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 10px; fill: #94a3b8; }
+    .flow-label { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 9px; fill: #38bdf8; font-weight: 500; }
+
+    /* Animations */
+    @keyframes pulseGlow {
+      0% { stroke-opacity: 0.4; }
+      50% { stroke-opacity: 1; }
+      100% { stroke-opacity: 0.4; }
+    }
+    @keyframes flowLine {
+      0% { stroke-dashoffset: 40; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes indicatorPulse {
+      0% { r: 3px; opacity: 1; }
+      50% { r: 6px; opacity: 0.4; }
+      100% { r: 3px; opacity: 1; }
+    }
+
+    .animated-border { stroke: #10b981; animation: pulseGlow 3s infinite ease-in-out; }
+    .animated-flow { stroke: #10b981; stroke-dasharray: 6, 6; animation: flowLine 1.8s linear infinite; }
+    .pulse-dot { fill: #10b981; animation: indicatorPulse 2s infinite ease-in-out; }
+  </style>
+
+  <!-- Container Box -->
+  <rect x="10" y="10" width="980" height="500" rx="16" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2" />
+  <rect x="10" y="10" width="980" height="500" rx="16" fill="none" class="animated-border" stroke-width="1.5" />
+
+  <!-- Header Section -->
+  <g transform="translate(35, 30)">
+    <rect x="0" y="0" width="170" height="22" rx="11" fill="#0f172a" stroke="#10b981" stroke-width="1.2" />
+    <circle cx="12" cy="11" r="4" class="pulse-dot" />
+    <text x="24" y="14" class="badge-text">INGESTION & FACT EXTRACTION</text>
+
+    <text x="0" y="44" class="title-text">Zero-Hallucination Resume & LinkedIn PDF Parsing</text>
+    <text x="0" y="60" class="desc-text">Deterministic multi-stage parsing engine extracting structured JSON without LLM fabrication.</text>
+  </g>
+
+  <!-- Flow Lines (Connections) -->
+  <g id="connections">
+    <line x1="220" y1="180" x2="255" y2="180" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="202.5" y="168.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="237.5" y="179.0" text-anchor="middle" class="flow-label">Binary Stream</text>
+    <line x1="440" y1="180" x2="475" y2="180" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="422.5" y="168.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="457.5" y="179.0" text-anchor="middle" class="flow-label">Text Elements</text>
+    <line x1="660" y1="180" x2="695" y2="180" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="642.5" y="168.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="677.5" y="179.0" text-anchor="middle" class="flow-label">Heuristic Blocks</text>
+    <line x1="782" y1="220" x2="782" y2="330" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="747.0" y="263.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="782.0" y="274.0" text-anchor="middle" class="flow-label">Normalized</text>
+    <line x1="782" y1="330" x2="660" y2="330" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="686.0" y="318.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="721.0" y="329.0" text-anchor="middle" class="flow-label">Clean JSON</text>
+    <line x1="475" y1="330" x2="440" y2="330" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="422.5" y="318.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="457.5" y="329.0" text-anchor="middle" class="flow-label">Validated Facts</text>
+    <line x1="255" y1="330" x2="220" y2="330" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="202.5" y="318.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="237.5" y="329.0" text-anchor="middle" class="flow-label">Live State</text>
+  </g>
+
+  <!-- Node Elements -->
+  <g id="nodes">
+    <g transform="translate(40, 140)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="180" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#64748b" />
+      <text x="14" y="24" class="node-title">Raw PDF / DOCX Upload</text>
+      <text x="14" y="44" class="node-desc">Official LinkedIn export or</text>
+      <text x="14" y="58" class="node-desc">custom CV document</text>
+    </g>
+    <g transform="translate(255, 140)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="185" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#0ea5e9" />
+      <text x="14" y="24" class="node-title">PyMuPDF Byte Extraction</text>
+      <text x="14" y="44" class="node-desc">Extracts raw text blocks,</text>
+      <text x="14" y="58" class="node-desc">coordinates & font weights</text>
+    </g>
+    <g transform="translate(475, 140)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="185" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#6366f1" />
+      <text x="14" y="24" class="node-title">Structural Segmentation</text>
+      <text x="14" y="44" class="node-desc">Identifies Experience, Skills,</text>
+      <text x="14" y="58" class="node-desc">Education & Contact</text>
+    </g>
+    <g transform="translate(695, 140)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="175" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#a855f7" />
+      <text x="14" y="24" class="node-title">Deterministic Normalizer</text>
+      <text x="14" y="44" class="node-desc">Normalizes dates, URLs, action</text>
+      <text x="14" y="58" class="node-desc">verbs & degree types</text>
+    </g>
+    <g transform="translate(475, 290)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="185" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#10b981" />
+      <text x="14" y="24" class="node-title">Candidate Fact Store</text>
+      <text x="14" y="44" class="node-desc">Immutable user history stored</text>
+      <text x="14" y="58" class="node-desc">in PostgreSQL JSONB</text>
+    </g>
+    <g transform="translate(255, 290)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="185" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#f59e0b" />
+      <text x="14" y="24" class="node-title">Schema Validator</text>
+      <text x="14" y="44" class="node-desc">Pydantic V2 schema validation</text>
+      <text x="14" y="58" class="node-desc">with zero hallucination</text>
+    </g>
+    <g transform="translate(40, 290)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="180" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#22c55e" />
+      <text x="14" y="24" class="node-title">Ready for AI Studio</text>
+      <text x="14" y="44" class="node-desc">Loaded into WYSIWYG editor &</text>
+      <text x="14" y="58" class="node-desc">24+ templates</text>
+    </g>
+  </g>
+</svg>

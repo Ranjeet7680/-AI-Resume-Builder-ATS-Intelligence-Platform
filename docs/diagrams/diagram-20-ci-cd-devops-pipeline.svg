@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Card Background -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Accent Glow -->
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2496ed" />
+      <stop offset="100%" stop-color="#1a75bb" />
+    </linearGradient>
+
+    <!-- Drop Shadows and Filters -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#2496ed" />
+    </marker>
+  </defs>
+
+  <style>
+    .title-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 20px; font-weight: 700; fill: #ffffff; }
+    .desc-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 11px; fill: #94a3b8; }
+    .badge-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 800; fill: #2496ed; letter-spacing: 1.5px; }
+    .node-title { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 600; fill: #f8fafc; }
+    .node-desc { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 10px; fill: #94a3b8; }
+    .flow-label { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 9px; fill: #38bdf8; font-weight: 500; }
+
+    /* Animations */
+    @keyframes pulseGlow {
+      0% { stroke-opacity: 0.4; }
+      50% { stroke-opacity: 1; }
+      100% { stroke-opacity: 0.4; }
+    }
+    @keyframes flowLine {
+      0% { stroke-dashoffset: 40; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes indicatorPulse {
+      0% { r: 3px; opacity: 1; }
+      50% { r: 6px; opacity: 0.4; }
+      100% { r: 3px; opacity: 1; }
+    }
+
+    .animated-border { stroke: #2496ed; animation: pulseGlow 3s infinite ease-in-out; }
+    .animated-flow { stroke: #2496ed; stroke-dasharray: 6, 6; animation: flowLine 1.8s linear infinite; }
+    .pulse-dot { fill: #2496ed; animation: indicatorPulse 2s infinite ease-in-out; }
+  </style>
+
+  <!-- Container Box -->
+  <rect x="10" y="10" width="980" height="500" rx="16" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2" />
+  <rect x="10" y="10" width="980" height="500" rx="16" fill="none" class="animated-border" stroke-width="1.5" />
+
+  <!-- Header Section -->
+  <g transform="translate(35, 30)">
+    <rect x="0" y="0" width="170" height="22" rx="11" fill="#0f172a" stroke="#2496ed" stroke-width="1.2" />
+    <circle cx="12" cy="11" r="4" class="pulse-dot" />
+    <text x="24" y="14" class="badge-text">CI/CD & DEVOPS</text>
+
+    <text x="0" y="44" class="title-text">Modern Zero-Downtime CI/CD & Deployment Pipeline</text>
+    <text x="0" y="60" class="desc-text">Continuous Integration and Deployment pipeline automating linting, testing, and multi-cloud deployment.</text>
+  </g>
+
+  <!-- Flow Lines (Connections) -->
+  <g id="connections">
+    <line x1="220" y1="170" x2="260" y2="170" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="205.0" y="158.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="240.0" y="169.0" text-anchor="middle" class="flow-label">Webhook</text>
+    <line x1="460" y1="150" x2="520" y2="115" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="455.0" y="120.5" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="490.0" y="131.5" text-anchor="middle" class="flow-label">Deploy Frontend</text>
+    <line x1="460" y1="170" x2="520" y2="225" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="455.0" y="185.5" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="490.0" y="196.5" text-anchor="middle" class="flow-label">Deploy Backend</text>
+    <line x1="460" y1="190" x2="520" y2="335" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="455.0" y="250.5" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="490.0" y="261.5" text-anchor="middle" class="flow-label">Run Migrations</text>
+    <line x1="750" y1="115" x2="800" y2="210" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="740.0" y="150.5" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="775.0" y="161.5" text-anchor="middle" class="flow-label">Route DNS</text>
+    <line x1="750" y1="225" x2="800" y2="230" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="740.0" y="215.5" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="775.0" y="226.5" text-anchor="middle" class="flow-label">Route API</text>
+  </g>
+
+  <!-- Node Elements -->
+  <g id="nodes">
+    <g transform="translate(40, 130)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="180" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#64748b" />
+      <text x="14" y="24" class="node-title">Git Push to main</text>
+      <text x="14" y="44" class="node-desc">Developer commits code to</text>
+      <text x="14" y="58" class="node-desc">GitHub repository</text>
+    </g>
+    <g transform="translate(260, 130)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="200" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#2496ed" />
+      <text x="14" y="24" class="node-title">GitHub Actions CI</text>
+      <text x="14" y="44" class="node-desc">Runs ESLint, TypeScript check,</text>
+      <text x="14" y="58" class="node-desc">Pytest test suites</text>
+    </g>
+    <g transform="translate(520, 80)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="230" height="75" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="75" rx="2" fill="#000000" />
+      <text x="14" y="24" class="node-title">Vercel Edge (Frontend)</text>
+      <text x="14" y="44" class="node-desc">Builds Next.js 14, deploys</text>
+      <text x="14" y="58" class="node-desc">globally to 300+ Edge nodes</text>
+    </g>
+    <g transform="translate(520, 190)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="230" height="75" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="75" rx="2" fill="#46e3b7" />
+      <text x="14" y="24" class="node-title">Render / Railway (Backend)</text>
+      <text x="14" y="44" class="node-desc">Builds Docker container, runs</text>
+      <text x="14" y="58" class="node-desc">FastAPI with Procfile</text>
+    </g>
+    <g transform="translate(520, 300)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="230" height="75" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="75" rx="2" fill="#336791" />
+      <text x="14" y="24" class="node-title">Managed PostgreSQL 16</text>
+      <text x="14" y="44" class="node-desc">Automated database migrations</text>
+      <text x="14" y="58" class="node-desc">and pgvector indexing</text>
+    </g>
+    <g transform="translate(800, 190)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="160" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#22c55e" />
+      <text x="14" y="24" class="node-title">Zero-Downtime Live SaaS</text>
+      <text x="14" y="44" class="node-desc">Production application</text>
+      <text x="14" y="58" class="node-desc">available globally with SSL/TLS</text>
+    </g>
+  </g>
+</svg>

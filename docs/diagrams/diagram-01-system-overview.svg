@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Card Background -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Accent Glow -->
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <!-- Drop Shadows and Filters -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8" />
+    </marker>
+  </defs>
+
+  <style>
+    .title-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 20px; font-weight: 700; fill: #ffffff; }
+    .desc-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 11px; fill: #94a3b8; }
+    .badge-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 800; fill: #38bdf8; letter-spacing: 1.5px; }
+    .node-title { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 600; fill: #f8fafc; }
+    .node-desc { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 10px; fill: #94a3b8; }
+    .flow-label { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 9px; fill: #38bdf8; font-weight: 500; }
+
+    /* Animations */
+    @keyframes pulseGlow {
+      0% { stroke-opacity: 0.4; }
+      50% { stroke-opacity: 1; }
+      100% { stroke-opacity: 0.4; }
+    }
+    @keyframes flowLine {
+      0% { stroke-dashoffset: 40; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes indicatorPulse {
+      0% { r: 3px; opacity: 1; }
+      50% { r: 6px; opacity: 0.4; }
+      100% { r: 3px; opacity: 1; }
+    }
+
+    .animated-border { stroke: #38bdf8; animation: pulseGlow 3s infinite ease-in-out; }
+    .animated-flow { stroke: #38bdf8; stroke-dasharray: 6, 6; animation: flowLine 1.8s linear infinite; }
+    .pulse-dot { fill: #38bdf8; animation: indicatorPulse 2s infinite ease-in-out; }
+  </style>
+
+  <!-- Container Box -->
+  <rect x="10" y="10" width="980" height="500" rx="16" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2" />
+  <rect x="10" y="10" width="980" height="500" rx="16" fill="none" class="animated-border" stroke-width="1.5" />
+
+  <!-- Header Section -->
+  <g transform="translate(35, 30)">
+    <rect x="0" y="0" width="170" height="22" rx="11" fill="#0f172a" stroke="#38bdf8" stroke-width="1.2" />
+    <circle cx="12" cy="11" r="4" class="pulse-dot" />
+    <text x="24" y="14" class="badge-text">ENTERPRISE SAAS OS</text>
+
+    <text x="0" y="44" class="title-text">Master System Architecture & Data Pipeline</text>
+    <text x="0" y="60" class="desc-text">End-to-end multi-tier architecture connecting Client, Edge, FastAPI, Gemini AI, and Vector Database.</text>
+  </g>
+
+  <!-- Flow Lines (Connections) -->
+  <g id="connections">
+    <line x1="260" y1="145" x2="340" y2="145" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="265.0" y="133.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="300.0" y="144.0" text-anchor="middle" class="flow-label">HTTP/2 / HTTPS</text>
+    <line x1="560" y1="145" x2="640" y2="145" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="565.0" y="133.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="600.0" y="144.0" text-anchor="middle" class="flow-label">Async ASGI</text>
+    <line x1="700" y1="190" x2="620" y2="270" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="625.0" y="218.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="660.0" y="229.0" text-anchor="middle" class="flow-label">ORM Queries</text>
+    <line x1="680" y1="190" x2="380" y2="270" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="495.0" y="218.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="530.0" y="229.0" text-anchor="middle" class="flow-label">Prompt Dispatch</text>
+    <line x1="305" y1="360" x2="420" y2="410" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="327.5" y="373.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="362.5" y="384.0" text-anchor="middle" class="flow-label">Document Data</text>
+    <line x1="590" y1="360" x2="480" y2="410" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="500.0" y="373.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="535.0" y="384.0" text-anchor="middle" class="flow-label">Template Render</text>
+  </g>
+
+  <!-- Node Elements -->
+  <g id="nodes">
+    <g transform="translate(40, 100)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="220" height="90" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="90" rx="2" fill="#0ea5e9" />
+      <text x="14" y="24" class="node-title">Client Tier</text>
+      <text x="14" y="44" class="node-desc">Next.js 14 App Router, React,</text>
+      <text x="14" y="58" class="node-desc">TailwindCSS, Web Speech API</text>
+    </g>
+    <g transform="translate(340, 100)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="220" height="90" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="90" rx="2" fill="#6366f1" />
+      <text x="14" y="24" class="node-title">Edge & Gateway</text>
+      <text x="14" y="44" class="node-desc">Vercel Edge Network, Reverse</text>
+      <text x="14" y="58" class="node-desc">Proxy, CORS, Rate Limiting</text>
+    </g>
+    <g transform="translate(640, 100)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="220" height="90" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="90" rx="2" fill="#10b981" />
+      <text x="14" y="24" class="node-title">Application Backend</text>
+      <text x="14" y="44" class="node-desc">FastAPI Asynchronous Python</text>
+      <text x="14" y="58" class="node-desc">3.11+, Pydantic V2, JWT Auth</text>
+    </g>
+    <g transform="translate(190, 270)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="230" height="90" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="90" rx="2" fill="#a855f7" />
+      <text x="14" y="24" class="node-title">AI Intelligence Core</text>
+      <text x="14" y="44" class="node-desc">Gemini 1.5 Pro & Flash,</text>
+      <text x="14" y="58" class="node-desc">Semantic Embeddings, STAR Rewriter</text>
+    </g>
+    <g transform="translate(510, 270)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="230" height="90" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="90" rx="2" fill="#f59e0b" />
+      <text x="14" y="24" class="node-title">Data & Vector Storage</text>
+      <text x="14" y="44" class="node-desc">PostgreSQL 16 + pgvector, Redis</text>
+      <text x="14" y="58" class="node-desc">Caching, Row-Level Security</text>
+    </g>
+    <g transform="translate(350, 410)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="220" height="60" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="60" rx="2" fill="#ec4899" />
+      <text x="14" y="24" class="node-title">Export & Integration</text>
+      <text x="14" y="44" class="node-desc">WeasyPrint Vector PDF, DOCX</text>
+      <text x="14" y="58" class="node-desc">OpenXML, LinkedIn OIDC</text>
+    </g>
+  </g>
+</svg>

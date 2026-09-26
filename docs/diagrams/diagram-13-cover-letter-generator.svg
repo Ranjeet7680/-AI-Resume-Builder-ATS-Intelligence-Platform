@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Card Background -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Accent Glow -->
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ec4899" />
+      <stop offset="100%" stop-color="#be185d" />
+    </linearGradient>
+
+    <!-- Drop Shadows and Filters -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#ec4899" />
+    </marker>
+  </defs>
+
+  <style>
+    .title-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 20px; font-weight: 700; fill: #ffffff; }
+    .desc-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 11px; fill: #94a3b8; }
+    .badge-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 800; fill: #ec4899; letter-spacing: 1.5px; }
+    .node-title { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 600; fill: #f8fafc; }
+    .node-desc { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 10px; fill: #94a3b8; }
+    .flow-label { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 9px; fill: #38bdf8; font-weight: 500; }
+
+    /* Animations */
+    @keyframes pulseGlow {
+      0% { stroke-opacity: 0.4; }
+      50% { stroke-opacity: 1; }
+      100% { stroke-opacity: 0.4; }
+    }
+    @keyframes flowLine {
+      0% { stroke-dashoffset: 40; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes indicatorPulse {
+      0% { r: 3px; opacity: 1; }
+      50% { r: 6px; opacity: 0.4; }
+      100% { r: 3px; opacity: 1; }
+    }
+
+    .animated-border { stroke: #ec4899; animation: pulseGlow 3s infinite ease-in-out; }
+    .animated-flow { stroke: #ec4899; stroke-dasharray: 6, 6; animation: flowLine 1.8s linear infinite; }
+    .pulse-dot { fill: #ec4899; animation: indicatorPulse 2s infinite ease-in-out; }
+  </style>
+
+  <!-- Container Box -->
+  <rect x="10" y="10" width="980" height="500" rx="16" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2" />
+  <rect x="10" y="10" width="980" height="500" rx="16" fill="none" class="animated-border" stroke-width="1.5" />
+
+  <!-- Header Section -->
+  <g transform="translate(35, 30)">
+    <rect x="0" y="0" width="170" height="22" rx="11" fill="#0f172a" stroke="#ec4899" stroke-width="1.2" />
+    <circle cx="12" cy="11" r="4" class="pulse-dot" />
+    <text x="24" y="14" class="badge-text">COVER LETTER ENGINE</text>
+
+    <text x="0" y="44" class="title-text">Contextual Multi-Tone AI Cover Letter Synthesizer</text>
+    <text x="0" y="60" class="desc-text">Generates company-tailored cover letters in Executive, Technical, and Startup tones in seconds.</text>
+  </g>
+
+  <!-- Flow Lines (Connections) -->
+  <g id="connections">
+    <line x1="250" y1="170" x2="320" y2="220" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="250.0" y="183.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="285.0" y="194.0" text-anchor="middle" class="flow-label">Resume Context</text>
+    <line x1="250" y1="320" x2="320" y2="260" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="250.0" y="278.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="285.0" y="289.0" text-anchor="middle" class="flow-label">Job Reqs</text>
+    <line x1="540" y1="240" x2="600" y2="240" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="535.0" y="228.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="570.0" y="239.0" text-anchor="middle" class="flow-label">Synthesize</text>
+    <line x1="820" y1="240" x2="860" y2="240" class="animated-flow" stroke-width="2" marker-end="url(#arrow)" />
+    <rect x="805.0" y="228.0" width="70" height="15" rx="3" fill="#090d16" fill-opacity="0.85" stroke="#334155" stroke-width="0.8" />
+    <text x="840.0" y="239.0" text-anchor="middle" class="flow-label">Export</text>
+  </g>
+
+  <!-- Node Elements -->
+  <g id="nodes">
+    <g transform="translate(50, 130)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="200" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#0ea5e9" />
+      <text x="14" y="24" class="node-title">Candidate Resume Facts</text>
+      <text x="14" y="44" class="node-desc">Hard accomplishments, skills,</text>
+      <text x="14" y="58" class="node-desc">and background</text>
+    </g>
+    <g transform="translate(50, 280)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="200" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#6366f1" />
+      <text x="14" y="24" class="node-title">Target Job Description</text>
+      <text x="14" y="44" class="node-desc">Company values, team mission &</text>
+      <text x="14" y="58" class="node-desc">required qualifications</text>
+    </g>
+    <g transform="translate(320, 200)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="220" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#ec4899" />
+      <text x="14" y="24" class="node-title">Tone Selector Engine</text>
+      <text x="14" y="44" class="node-desc">Choose: Confident Leader • Tech</text>
+      <text x="14" y="58" class="node-desc">Specialist • Bold Creative</text>
+    </g>
+    <g transform="translate(600, 200)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="220" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#a855f7" />
+      <text x="14" y="24" class="node-title">3-Paragraph AI Narrative</text>
+      <text x="14" y="44" class="node-desc">1. Hook & Fit • 2. Relevant</text>
+      <text x="14" y="58" class="node-desc">Impact • 3. Forward-Looking Close</text>
+    </g>
+    <g transform="translate(860, 200)" filter="url(#cardShadow)">
+      <rect x="0" y="0" width="120" height="80" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" />
+      <rect x="0" y="0" width="4" height="80" rx="2" fill="#22c55e" />
+      <text x="14" y="24" class="node-title">Tailored Cover Letter</text>
+      <text x="14" y="44" class="node-desc">Export as PDF, DOCX or copy to</text>
+      <text x="14" y="58" class="node-desc">clipboard</text>
+    </g>
+  </g>
+</svg>
