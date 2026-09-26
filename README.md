@@ -1,11 +1,15 @@
-# -AI-Resume-Builder-ATS-Intelligence-Platform
-
 <div align="center">
 
 <img src="./docs/readme-hero-banner.svg" alt="AI Resume Builder & ATS Intelligence Platform" width="100%" />
 
-<br/><br/>
+# 🚀 AI Resume Builder & ATS Intelligence Platform
 
+### 🎯 *The Autonomous AI Career Operating System (SaaS OS) & ATS Placement Engine*
+**Accelerate from Zero to FAANG/Tier-1 Offer with LinkedIn OIDC, 24+ Multi-Template Studio, Google XYZ Rewriter, 12 Indian Languages Voice AI, and Deterministic ATS Diagnostics.**
+
+<br/>
+
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Vercel_App-black.svg?style=flat-square&logo=vercel&logoColor=white)](https://resume-builder-git-main-ranjeet7680s-projects.vercel.app/)
 [![Version](https://img.shields.io/badge/version-2.0.0-blue.svg?style=flat-square&logo=git)](https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![Python: 3.11+](https://img.shields.io/badge/Python-3.11+-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://python.org)
@@ -15,17 +19,14 @@
 [![TailwindCSS: 3.4](https://img.shields.io/badge/Tailwind-3.4-38B2AC.svg?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 [![PostgreSQL: 16+pgvector](https://img.shields.io/badge/PostgreSQL-16%2Bpgvector-336791.svg?style=flat-square&logo=postgresql&logoColor=white)](https://github.com/pgvector/pgvector)
 [![Docker](https://img.shields.io/badge/Docker-Compose-2496ED.svg?style=flat-square&logo=docker&logoColor=white)](https://docker.com)
-[![Deploy: Vercel](https://img.shields.io/badge/Deploy-Vercel-black.svg?style=flat-square&logo=vercel&logoColor=white)](https://vercel.com)
 [![Official Wiki: 22+ Diagrams](https://img.shields.io/badge/Wiki-22+_Animated_Diagrams-7c3aed.svg?style=flat-square&logo=gitbook&logoColor=white)](https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform/wiki)
 
-<br/>
-
-### 🎯 The Autonomous AI Career Operating System & ATS Placement Engine
-**Accelerate from Zero to FAANG/Tier-1 Offer with LinkedIn OIDC, 24+ Multi-Template Studio, Google XYZ Rewriter, 12 Indian Languages Voice AI, and Deterministic ATS Diagnostics.**
-
-<br/>
+<br/><br/>
 
 <p>
+  <a href="https://resume-builder-git-main-ranjeet7680s-projects.vercel.app/">
+    <img src="https://img.shields.io/badge/🚀_Live_Demo-Open_Vercel_App-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
+  </a>
   <a href="https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform/wiki">
     <img src="https://img.shields.io/badge/📚_Official_Wiki-22+_Animated_Diagrams-7c3aed?style=for-the-badge&logo=gitbook&logoColor=white" alt="Official Wiki" />
   </a>
@@ -33,10 +34,7 @@
     <img src="https://img.shields.io/badge/⚡_Quickstart-Run_in_5_Mins-0284c7?style=for-the-badge&logo=fastapi&logoColor=white" alt="Quickstart" />
   </a>
   <a href="#-deployment-guide-vercel--backend">
-    <img src="https://img.shields.io/badge/☁️_Deploy-Vercel_%2B_Render-059669?style=for-the-badge&logo=vercel&logoColor=white" alt="Deploy" />
-  </a>
-  <a href="#-api-endpoints-reference">
-    <img src="https://img.shields.io/badge/📖_REST_APIs-FastAPI_Docs-db2777?style=for-the-badge&logo=swagger&logoColor=white" alt="API Docs" />
+    <img src="https://img.shields.io/badge/☁️_Deploy_Guide-Fix_Vercel_%2B_Render-059669?style=for-the-badge&logo=vercel&logoColor=white" alt="Deploy" />
   </a>
 </p>
 
@@ -189,12 +187,14 @@ CENTRAL COMMAND DASHBOARD (/dashboard)
 ## 📂 Project Structure
 
 ```text
-wise-fermi/
+AI-Resume-Builder-ATS-Intelligence-Platform/
 ├── docs/
-│   └── architecture-diagram.svg         # Animated SVG architecture diagram
+│   ├── readme-hero-banner.svg           # High-resolution animated hero banner
+│   ├── architecture-diagram.svg         # Animated master architecture SVG
+│   └── diagrams/                        # 22+ Domain-specific animated SVG diagrams
+├── package.json                         # Monorepo workspaces configuration
 ├── docker-compose.yml                   # Container stack (Postgres + pgvector + Redis + App)
 ├── render.yaml                          # One-click Render infrastructure blueprint
-├── vercel.json                          # Monorepo Vercel configuration
 ├── backend/                             # FastAPI Python Async Backend
 │   ├── Dockerfile
 │   ├── Procfile                         # Cloud deployment entrypoint
@@ -213,8 +213,10 @@ wise-fermi/
 │       ├── api/                         # REST API endpoints (Auth, Resume, Templates, etc.)
 │       └── services/                    # Business logic (AI Engine, Templates, GitHub, etc.)
 └── frontend/                            # Next.js 14 App Router Frontend
-    ├── vercel.json                      # Vercel deployment configuration
+    ├── vercel.json                      # Vercel deployment configuration & security headers
     ├── package.json
+    ├── .eslintrc.json                   # ESLint Next.js configuration
+    ├── next.config.mjs                  # Resilient Next.js production build config
     ├── tailwind.config.ts
     ├── public/
     │   └── architecture-diagram.svg
@@ -286,26 +288,34 @@ Open **[http://localhost:3000](http://localhost:3000)** in your browser.
 
 ## ☁️ Deployment Guide (Vercel & Backend)
 
-### Deploy Frontend to Vercel (1-Click)
+### 🚀 Deploy Frontend to Vercel (Step-by-Step)
 
-1. Push this repository to your GitHub account:
-   ```bash
-   git remote add origin https://github.com/Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform.git
-   git branch -M main
-   git push -u origin main
-   ```
-2. Go to **[Vercel Dashboard](https://vercel.com/new)** and click **Import Repository**.
-3. Select your repository `Ranjeet7680/-AI-Resume-Builder-ATS-Intelligence-Platform`.
-4. Configure Project Settings:
-   - **Root Directory**: `frontend` (or leave root as `vercel.json` automatically configures it)
-   - **Framework Preset**: `Next.js`
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `.next`
-5. Add Environment Variables:
-   ```env
-   NEXT_PUBLIC_API_URL=https://your-backend-api-domain.com/api/v1
-   ```
-6. Click **Deploy**. Vercel will build and launch your production web app in under 2 minutes!
+Your application is pre-configured for zero-downtime deployment on Vercel.
+
+* **Live Git Preview**: [https://resume-builder-git-main-ranjeet7680s-projects.vercel.app/](https://resume-builder-git-main-ranjeet7680s-projects.vercel.app/)
+* **Production Deployment**: [https://resume-builder-2kbdaz4gb-ranjeet7680s-projects.vercel.app/](https://resume-builder-2kbdaz4gb-ranjeet7680s-projects.vercel.app/)
+
+#### 🛠️ Essential Vercel Settings Configuration
+
+If your deployment redirects to a **"Log in to Vercel"** page or fails to build, follow these 2 quick steps in your Vercel Dashboard:
+
+1. **Disable Vercel Authentication (Remove the Login Screen)**:
+   * Open your project **`resume-builder`** on [Vercel Dashboard](https://vercel.com/dashboard).
+   * Go to **Settings ➔ Deployment Protection**.
+   * Under **Vercel Authentication**, toggle the switch to **OFF** (Disabled).
+   * Click **Save**. *Now your live app is publicly viewable without requiring a Vercel login!*
+
+2. **Configure Root Directory & Build Settings**:
+   * In Vercel Project **Settings ➔ General**:
+     * **Root Directory**: `frontend` *(Click Edit, select `frontend`, and Save)*
+     * **Framework Preset**: `Next.js`
+     * **Build Command**: `next build` (or leave default)
+     * **Output Directory**: `.next` (or leave default)
+   * In Vercel Project **Settings ➔ Environment Variables**:
+     ```env
+     NEXT_PUBLIC_API_URL=https://your-backend-api-domain.com/api/v1
+     ```
+   * Go to **Deployments ➔ Click the latest deployment ➔ Redeploy**!
 
 ---
 
