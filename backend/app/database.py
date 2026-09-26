@@ -35,6 +35,8 @@ class Base(DeclarativeBase):
 async def init_db():
     """Initializes tables and vector extensions if using Postgres, falling back to SQLite if Postgres is unavailable."""
     global engine, AsyncSessionLocal
+    # Ensure all models are registered in Base.metadata
+    import app.models  # noqa: F401
     try:
         async with engine.begin() as conn:
             # Enable pgvector if Postgres is used

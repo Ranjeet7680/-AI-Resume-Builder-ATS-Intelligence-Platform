@@ -13,6 +13,12 @@ from app.api.tailor import router as tailor_router
 from app.api.analysis import router as analysis_router
 from app.api.chat import router as chat_router
 from app.api.templates import router as templates_router
+from app.api.applications import router as applications_router
+from app.api.profile import router as profile_router
+from app.api.settings import router as settings_router
+from app.api.github import router as github_router
+from app.api.admin import router as admin_router
+from app.api.analytics import router as analytics_router
 
 
 @asynccontextmanager
@@ -58,6 +64,12 @@ app.include_router(jobs_router, prefix=api_v1_prefix)
 app.include_router(export_router, prefix=api_v1_prefix)
 app.include_router(tailor_router, prefix=api_v1_prefix)
 app.include_router(analysis_router, prefix=api_v1_prefix)
+app.include_router(applications_router, prefix=api_v1_prefix)
+app.include_router(profile_router, prefix=api_v1_prefix)
+app.include_router(settings_router, prefix=api_v1_prefix)
+app.include_router(github_router, prefix=api_v1_prefix)
+app.include_router(admin_router, prefix=api_v1_prefix)
+app.include_router(analytics_router, prefix=api_v1_prefix)
 
 
 @app.get("/")

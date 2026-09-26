@@ -6,6 +6,16 @@ import {
   Create5VersionsRequest,
   Create5VersionsResponse,
 } from "@/types/template";
+import {
+  JobApplicationItem,
+  UserProfileData,
+  OnboardingData,
+  UserSettingsData,
+  GitHubAnalysisData,
+  CampaignItem,
+  AdminStatsData,
+  CareerAnalyticsData,
+} from "@/types/saas";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1";
 
@@ -64,6 +74,16 @@ export const authApi = {
     apiRequest<{ access_token: string; user: UserProfile }>("/auth/demo", {
       method: "POST",
       body: JSON.stringify({ email }),
+    }),
+  emailLogin: (email: string, password?: string) =>
+    apiRequest<{ access_token: string; user: UserProfile }>("/auth/demo", {
+      method: "POST",
+      body: JSON.stringify({ email }),
+    }),
+  emailSignup: (email: string, full_name?: string, password?: string) =>
+    apiRequest<{ access_token: string; user: UserProfile }>("/auth/demo", {
+      method: "POST",
+      body: JSON.stringify({ email, full_name }),
     }),
   getMe: () => apiRequest<UserProfile>("/auth/me"),
   uploadLinkedInPdf: async (file: File) => {
@@ -383,5 +403,81 @@ export const templateApi = {
       body: JSON.stringify(payload),
     }),
 };
+
+// Profile & Onboarding API
+export const profileApi = {
+  getProfile: () => apiRequest<UserProfileData>("/profile"),
+  updateProfile: (data: Partial<UserProfileData>) =>
+    apiRequest<UserProfileData>("/profile", {
+      method: "PUT",
+      body: JSON.stringify(data),
+    }),
+  completeOnboarding: (data: OnboardingData) =>
+    apiRequest<{ status: string; message: string }>("/profile/onboarding", {
+      method: "POST",
+      body: JSON.stringify(data),
+    }),
+};
+
+// Application Tracker API
+export const applicationApi = {
+  list: (statusFilter?: string) =>
+    apiRequest<JobApplicationItem[]>(`/applications${statusFilter ? `?status_filter=${statusFilter}` : ""}`),
+  create: (data: Partial<JobApplicationItem>) =>
+    apiRequest<JobApplicationItem>("/applications", {
+      method: "POST",
+      body: JSON.stringify(data),
+    }),
+  update: (id: string, data: Partial<JobApplicationItem>) =>
+    apiRequest<JobApplicationItem>(`/applications/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+    }),
+  delete: (id: string) =>
+    apiRequest<void>(`/applications/${id}`, {
+      method: "DELETE",
+    }),
+};
+
+// Settings API
+export const settingsApi = {
+  getSettings: () => apiRequest<UserSettingsData>("/settings"),
+  updateSettings: (data: Partial<UserSettingsData>) =>
+    apiRequest<UserSettingsData>("/settings", {
+      method: "PUT",
+      body: JSON.stringify(data),
+    }),
+};
+
+// GitHub Analyzer API
+export const githubApi = {
+  analyze: (username_or_url: string, target_role?: string) =>
+    apiRequest<GitHubAnalysisData>("/github/analyze", {
+      method: "POST",
+      body: JSON.stringify({ username_or_url, target_role }),
+    }),
+};
+
+// Admin & Campaign API
+export const adminApi = {
+  getStats: () => apiRequest<AdminStatsData>("/admin/stats"),
+  listCampaigns: (target_page: string = "all") =>
+    apiRequest<CampaignItem[]>(`/admin/campaigns?target_page=${encodeURIComponent(target_page)}`),
+  createCampaign: (data: Partial<CampaignItem>) =>
+    apiRequest<CampaignItem>("/admin/campaigns", {
+      method: "POST",
+      body: JSON.stringify(data),
+    }),
+  toggleCampaign: (id: string) =>
+    apiRequest<CampaignItem>(`/admin/campaigns/${id}/toggle`, {
+      method: "PUT",
+    }),
+};
+
+// Career Analytics API
+export const analyticsApi = {
+  getAnalytics: () => apiRequest<CareerAnalyticsData>("/analytics"),
+};
+
 
 
