@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Sparkles, FileText, CheckCircle2, Target, LogIn } from "lucide-react";
+import { Sparkles, FileText, CheckCircle2, Target, LogIn, Palette } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
 
   const navLinks = [
     { href: "/dashboard", label: "Dashboard", icon: FileText },
+    { href: "/templates", label: "🎨 Templates", icon: Palette },
     { href: "/career-coach", label: "🎙️ Career Coach", icon: Sparkles },
     { href: "/tailor", label: "🎯 AI Tailor", icon: Target },
     { href: "/builder/new", label: "Resume Builder", icon: Sparkles },

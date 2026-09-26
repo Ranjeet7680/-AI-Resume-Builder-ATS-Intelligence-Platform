@@ -99,3 +99,40 @@ async def export_resume_json(
             "lastModified": resume.updated_at.isoformat()
         }
     }
+
+
+@router.get("/{resume_id}/txt", response_class=Response)
+async def export_resume_txt(
+    resume_id: str,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """Generates clean ASCII Plain-Text (TXT) optimized for automated ATS copy-paste."""
+    from app.services.template_service import template_service
+
+    stmt = select(Resume).where(Resume.id == resume_id, Resume.user_id == current_user.id)
+    res = await db.execute(stmt)
+    resume = res.scalar_one_or_none()
+    if not resume:
+        raise HTTPException(status_code=404, detail="Resume not found")
+
+    resume_data = ResumeBase(
+        title=resume.title,
+        target_role=resume.target_role,
+        template_id=resume.template_id,
+        personal_info=resume.personal_info,
+        experiences=resume.experiences,
+        education=resume.education,
+        skills=resume.skills,
+        projects=resume.projects,
+        certifications=resume.certifications,
+    )
+    plain_text = template_service.generate_plain_text(resume_data)
+    filename = f"{resume.personal_info.get('fullName', 'resume').replace(' ', '_')}_ATS.txt"
+
+    return Response(
+        content=plain_text,
+        media_type="text/plain; charset=utf-8",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'}
+    )
+

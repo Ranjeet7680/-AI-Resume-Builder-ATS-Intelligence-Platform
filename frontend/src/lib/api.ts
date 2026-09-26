@@ -1,4 +1,11 @@
 import { ResumeData, ATSAnalysis, JobMatchResult, UserProfile } from "@/types/resume";
+import {
+  TemplateMetadata,
+  TemplateRecommendationRequest,
+  TemplateRecommendationResponse,
+  Create5VersionsRequest,
+  Create5VersionsResponse,
+} from "@/types/template";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1";
 
@@ -199,6 +206,7 @@ export const exportApi = {
   getHtmlExportUrl: (resumeId: string) => `${API_BASE}/export/${resumeId}/html`,
   getDocxExportUrl: (resumeId: string) => `${API_BASE}/export/${resumeId}/docx`,
   getJsonExportUrl: (resumeId: string) => `${API_BASE}/export/${resumeId}/json`,
+  getTxtExportUrl: (resumeId: string) => `${API_BASE}/export/${resumeId}/txt`,
 };
 
 // AI Tailor API
@@ -354,4 +362,26 @@ export const chatApi = {
       method: "DELETE",
     }),
 };
+
+// Template Studio & Multi-Version API
+export const templateApi = {
+  listTemplates: (category?: string) =>
+    apiRequest<TemplateMetadata[]>(`/templates${category ? `?category=${encodeURIComponent(category)}` : ""}`),
+
+  getTemplate: (id: string) =>
+    apiRequest<TemplateMetadata>(`/templates/${id}`),
+
+  recommendTemplates: (payload: TemplateRecommendationRequest) =>
+    apiRequest<TemplateRecommendationResponse>("/templates/recommend", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+
+  create5Versions: (payload: Create5VersionsRequest) =>
+    apiRequest<Create5VersionsResponse>("/templates/create-5-versions", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+};
+
 

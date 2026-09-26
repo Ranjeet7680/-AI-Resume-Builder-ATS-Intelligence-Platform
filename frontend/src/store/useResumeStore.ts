@@ -1,6 +1,20 @@
 import { create } from "zustand";
 import { ResumeData, ExperienceItem, EducationItem, SkillCategory, ProjectItem, ATSAnalysis } from "@/types/resume";
+import { TemplateCustomizationConfig } from "@/types/template";
 import { atsApi } from "@/lib/api";
+
+export const defaultCustomization: TemplateCustomizationConfig = {
+  font_family: "Inter",
+  color_theme: "#2563eb",
+  layout_format: "single",
+  font_size: "md",
+  line_spacing: "normal",
+  section_spacing: "normal",
+  page_margin: "normal",
+  header_style: "left",
+  show_photo: false,
+  section_order: ["summary", "experience", "projects", "skills", "education", "certifications"],
+};
 
 const initialResume: ResumeData = {
   title: "Full Stack Engineer Resume",
@@ -94,6 +108,7 @@ const initialResume: ResumeData = {
 
 interface ResumeState {
   resume: ResumeData;
+  customization: TemplateCustomizationConfig;
   atsAnalysis: ATSAnalysis | null;
   isAnalyzingAts: boolean;
   activeSection: string;
@@ -101,6 +116,7 @@ interface ResumeState {
   updatePersonalInfo: (field: string, value: string) => void;
   updateTargetRole: (role: string) => void;
   setTemplate: (templateId: string) => void;
+  setCustomization: (customization: Partial<TemplateCustomizationConfig>) => void;
   setActiveSection: (section: string) => void;
   
   // Experience actions
@@ -121,8 +137,50 @@ interface ResumeState {
   runAtsAnalysis: () => Promise<void>;
 }
 
+function getTemplateDefaultConfig(templateId: string): Partial<TemplateCustomizationConfig> {
+  switch (templateId) {
+    case "ats-minimal":
+      return { font_family: "Roboto", color_theme: "#111827", layout_format: "single", header_style: "left" };
+    case "ats-classic":
+      return { font_family: "Merriweather", color_theme: "#1f2937", layout_format: "single", header_style: "center" };
+    case "ats-onepage":
+      return { font_family: "Inter", color_theme: "#2563eb", layout_format: "compact", header_style: "left" };
+    case "modern-blue":
+      return { font_family: "Inter", color_theme: "#2563eb", layout_format: "single", header_style: "left" };
+    case "modern-split":
+      return { font_family: "Inter", color_theme: "#2563eb", layout_format: "two-column", header_style: "left" };
+    case "swe-tech":
+      return { font_family: "Roboto", color_theme: "#0f172a", layout_format: "single", header_style: "left" };
+    case "fullstack-dev":
+      return { font_family: "Inter", color_theme: "#0284c7", layout_format: "two-column", header_style: "left" };
+    case "ai-ml":
+      return { font_family: "Inter", color_theme: "#7c3aed", layout_format: "two-column", header_style: "left" };
+    case "data-scientist":
+      return { font_family: "Roboto", color_theme: "#0e7490", layout_format: "two-column", header_style: "left" };
+    case "generative-ai":
+      return { font_family: "Montserrat", color_theme: "#8b5cf6", layout_format: "two-column", header_style: "banner" };
+    case "fresher-classic":
+      return { font_family: "Lato", color_theme: "#1e3a8a", layout_format: "single", header_style: "center" };
+    case "btech-placement":
+      return { font_family: "Inter", color_theme: "#0369a1", layout_format: "compact", header_style: "left" };
+    case "executive-classic":
+      return { font_family: "Georgia", color_theme: "#0f172a", layout_format: "single", header_style: "center" };
+    case "leadership-vp":
+      return { font_family: "Georgia", color_theme: "#1e293b", layout_format: "single", header_style: "banner" };
+    case "creative-modern":
+      return { font_family: "Montserrat", color_theme: "#d97706", layout_format: "two-column", header_style: "banner" };
+    case "startup-impact":
+      return { font_family: "Poppins", color_theme: "#dc2626", layout_format: "two-column", header_style: "left" };
+    case "visual-timeline":
+      return { font_family: "Inter", color_theme: "#2563eb", layout_format: "timeline", header_style: "left" };
+    default:
+      return { font_family: "Inter", color_theme: "#2563eb", layout_format: "single", header_style: "left" };
+  }
+}
+
 export const useResumeStore = create<ResumeState>((set, get) => ({
   resume: initialResume,
+  customization: defaultCustomization,
   atsAnalysis: null,
   isAnalyzingAts: false,
   activeSection: "profile",
@@ -146,8 +204,17 @@ export const useResumeStore = create<ResumeState>((set, get) => ({
     })),
 
   setTemplate: (template_id) =>
+    set((state) => {
+      const overrides = getTemplateDefaultConfig(template_id);
+      return {
+        resume: { ...state.resume, template_id },
+        customization: { ...state.customization, ...overrides },
+      };
+    }),
+
+  setCustomization: (customization) =>
     set((state) => ({
-      resume: { ...state.resume, template_id },
+      customization: { ...state.customization, ...customization },
     })),
 
   setActiveSection: (activeSection) => set({ activeSection }),
