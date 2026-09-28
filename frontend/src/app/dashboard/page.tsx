@@ -120,62 +120,77 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 sm:px-8 py-8 max-w-6xl space-y-8">
+    <div className="container mx-auto px-4 sm:px-8 py-6 sm:py-8 max-w-6xl space-y-8 animate-fade-in-up">
       {/* 1. WELCOME & CAREER READINESS SCORECARD */}
-      <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="relative overflow-hidden rounded-3xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 sm:p-8 shadow-sm transition-all duration-300 hover:shadow-glow">
+        <div className="absolute top-0 right-0 -mt-12 -mr-12 w-64 h-64 bg-gradient-to-br from-blue-500/10 via-indigo-500/5 to-transparent rounded-full blur-2xl pointer-events-none" />
+
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full">
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 dark:bg-blue-950/60 dark:text-blue-300 px-3 py-1 rounded-full border border-blue-200/60 dark:border-blue-800/60">
+              <Sparkles className="h-3 w-3 text-blue-600 animate-pulse" />
               Career Command Center
-            </span>
-            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 mt-2">
+            </div>
+            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white mt-2">
               Good morning, Alex 👋
             </h1>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-xl">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-xl">
               Your career readiness is in the top 15% for Staff & Senior Engineering roles. 3 interviews scheduled this week.
             </p>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="grid grid-cols-2 sm:flex sm:items-center gap-2.5">
             <Link
               href="/builder/new"
-              className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-xs sm:text-sm font-bold text-white shadow-md shadow-blue-500/20 hover:bg-blue-700 transition"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-95 px-4 sm:px-5 py-3 text-xs sm:text-sm font-bold text-white shadow-md shadow-blue-500/25 transition-all"
             >
-              <Plus className="h-4 w-4" /> Create New Resume
+              <Plus className="h-4 w-4" /> Create Resume
             </Link>
             <Link
               href="/templates"
-              className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-3 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-750 active:scale-95 px-4 sm:px-5 py-3 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 transition-all shadow-xs"
             >
-              <Layers className="h-4 w-4 text-purple-600" /> 24+ Templates
+              <Layers className="h-4 w-4 text-purple-600 dark:text-purple-400" /> 24+ Templates
             </Link>
           </div>
         </div>
 
         {/* Career Readiness Meter Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-6 border-t border-slate-100">
-          <div className="p-4 rounded-2xl bg-blue-50/50 border border-blue-100 space-y-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-blue-700">Career Readiness</span>
-            <div className="text-2xl font-black text-blue-900">78 <span className="text-xs font-normal text-slate-500">/ 100</span></div>
-            <span className="text-[10px] text-emerald-600 font-semibold block">▲ +12% this month</span>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-6 pt-6 border-t border-slate-100 dark:border-slate-800">
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-br from-blue-50/70 to-blue-50/20 dark:from-blue-950/40 dark:to-slate-900 border border-blue-100 dark:border-blue-900/60 space-y-1.5 transition-transform hover:-translate-y-0.5">
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400">Career Readiness</span>
+            <div className="text-xl sm:text-2xl font-black text-blue-900 dark:text-blue-100">78 <span className="text-xs font-normal text-slate-500">/ 100</span></div>
+            <div className="w-full bg-blue-100 dark:bg-blue-950 h-1.5 rounded-full overflow-hidden">
+              <div className="bg-blue-600 h-full w-[78%] rounded-full" />
+            </div>
+            <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold block">▲ +12% this month</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-emerald-50/50 border border-emerald-100 space-y-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700">Avg. ATS Pass Rate</span>
-            <div className="text-2xl font-black text-emerald-900">92%</div>
-            <span className="text-[10px] text-emerald-600 font-semibold block">100% Parsable formats</span>
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-br from-emerald-50/70 to-emerald-50/20 dark:from-emerald-950/40 dark:to-slate-900 border border-emerald-100 dark:border-emerald-900/60 space-y-1.5 transition-transform hover:-translate-y-0.5">
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Avg. ATS Pass Rate</span>
+            <div className="text-xl sm:text-2xl font-black text-emerald-900 dark:text-emerald-100">92%</div>
+            <div className="w-full bg-emerald-100 dark:bg-emerald-950 h-1.5 rounded-full overflow-hidden">
+              <div className="bg-emerald-600 h-full w-[92%] rounded-full" />
+            </div>
+            <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold block">100% Parsable formats</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-purple-50/50 border border-purple-100 space-y-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-purple-700">Skills Alignment</span>
-            <div className="text-2xl font-black text-purple-900">74%</div>
-            <span className="text-[10px] text-slate-500 block">Top Match: Python & PyTorch</span>
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-br from-purple-50/70 to-purple-50/20 dark:from-purple-950/40 dark:to-slate-900 border border-purple-100 dark:border-purple-900/60 space-y-1.5 transition-transform hover:-translate-y-0.5">
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-purple-700 dark:text-purple-400">Skills Alignment</span>
+            <div className="text-xl sm:text-2xl font-black text-purple-900 dark:text-purple-100">74%</div>
+            <div className="w-full bg-purple-100 dark:bg-purple-950 h-1.5 rounded-full overflow-hidden">
+              <div className="bg-purple-600 h-full w-[74%] rounded-full" />
+            </div>
+            <span className="text-[10px] text-slate-500 dark:text-slate-400 block truncate">Top: Python & PyTorch</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-amber-50/50 border border-amber-100 space-y-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700">Active Applications</span>
-            <div className="text-2xl font-black text-amber-900">12</div>
-            <span className="text-[10px] text-slate-500 block">3 Interviews • 1 Offer</span>
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-br from-amber-50/70 to-amber-50/20 dark:from-amber-950/40 dark:to-slate-900 border border-amber-100 dark:border-amber-900/60 space-y-1.5 transition-transform hover:-translate-y-0.5">
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">Applications</span>
+            <div className="text-xl sm:text-2xl font-black text-amber-900 dark:text-amber-100">12</div>
+            <div className="w-full bg-amber-100 dark:bg-amber-950 h-1.5 rounded-full overflow-hidden">
+              <div className="bg-amber-500 h-full w-[65%] rounded-full" />
+            </div>
+            <span className="text-[10px] text-slate-500 dark:text-slate-400 block truncate">3 Interviews • 1 Offer</span>
           </div>
         </div>
       </div>
@@ -184,92 +199,92 @@ export default function DashboardPage() {
       <PromotionBanner targetPage="dashboard" />
 
       {/* 3. QUICK ACTION LAUNCHER */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
         <Link
           href="/tailor"
-          className="p-4 rounded-2xl bg-white border border-slate-200 hover:border-blue-400 hover:shadow-sm transition flex flex-col justify-between group"
+          className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md hover:-translate-y-1 active:scale-[0.98] transition-all duration-200 flex flex-col justify-between group"
         >
-          <div className="space-y-1.5">
-            <div className="p-2 rounded-xl bg-indigo-50 text-indigo-700 w-fit">
-              <Target className="h-5 w-5" />
+          <div className="space-y-2">
+            <div className="p-2.5 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white shadow-sm w-fit group-hover:scale-110 transition-transform">
+              <Target className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
-            <span className="font-bold text-sm text-slate-900 group-hover:text-blue-600 transition block">
+            <span className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition block">
               AI Job Tailor
             </span>
-            <p className="text-xs text-slate-500">Paste job description ➔ Match keywords</p>
+            <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 line-clamp-2">Paste job description ➔ Match keywords</p>
           </div>
-          <span className="text-xs font-semibold text-blue-600 pt-3 flex items-center gap-1">
+          <span className="text-[11px] sm:text-xs font-semibold text-blue-600 dark:text-blue-400 pt-3 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
             Tailor Now <ArrowRight className="h-3 w-3" />
           </span>
         </Link>
 
         <Link
           href="/career-coach"
-          className="p-4 rounded-2xl bg-white border border-slate-200 hover:border-purple-400 hover:shadow-sm transition flex flex-col justify-between group"
+          className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-md hover:-translate-y-1 active:scale-[0.98] transition-all duration-200 flex flex-col justify-between group"
         >
-          <div className="space-y-1.5">
-            <div className="p-2 rounded-xl bg-purple-50 text-purple-700 w-fit">
-              <Mic className="h-5 w-5" />
+          <div className="space-y-2">
+            <div className="p-2.5 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-600 text-white shadow-sm w-fit group-hover:scale-110 transition-transform">
+              <Mic className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
-            <span className="font-bold text-sm text-slate-900 group-hover:text-purple-600 transition block">
-              Voice Interview Coach
+            <span className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition block">
+              Voice Career Coach
             </span>
-            <p className="text-xs text-slate-500">Practice live technical & HR Q&A</p>
+            <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 line-clamp-2">Live verbal Q&A in 12 Indian languages</p>
           </div>
-          <span className="text-xs font-semibold text-purple-600 pt-3 flex items-center gap-1">
+          <span className="text-[11px] sm:text-xs font-semibold text-purple-600 dark:text-purple-400 pt-3 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
             Start Mock <ArrowRight className="h-3 w-3" />
           </span>
         </Link>
 
         <Link
           href="/ats-analyzer"
-          className="p-4 rounded-2xl bg-white border border-slate-200 hover:border-emerald-400 hover:shadow-sm transition flex flex-col justify-between group"
+          className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-emerald-400 dark:hover:border-emerald-500 hover:shadow-md hover:-translate-y-1 active:scale-[0.98] transition-all duration-200 flex flex-col justify-between group"
         >
-          <div className="space-y-1.5">
-            <div className="p-2 rounded-xl bg-emerald-50 text-emerald-700 w-fit">
-              <CheckCircle2 className="h-5 w-5" />
+          <div className="space-y-2">
+            <div className="p-2.5 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white shadow-sm w-fit group-hover:scale-110 transition-transform">
+              <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
-            <span className="font-bold text-sm text-slate-900 group-hover:text-emerald-600 transition block">
+            <span className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition block">
               ATS Checker
             </span>
-            <p className="text-xs text-slate-500">Test Workday & Taleo parsing</p>
+            <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 line-clamp-2">Test Workday & Taleo parsing</p>
           </div>
-          <span className="text-xs font-semibold text-emerald-600 pt-3 flex items-center gap-1">
+          <span className="text-[11px] sm:text-xs font-semibold text-emerald-600 dark:text-emerald-400 pt-3 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
             Run Scan <ArrowRight className="h-3 w-3" />
           </span>
         </Link>
 
         <Link
           href="/applications"
-          className="p-4 rounded-2xl bg-white border border-slate-200 hover:border-amber-400 hover:shadow-sm transition flex flex-col justify-between group"
+          className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-amber-400 dark:hover:border-amber-500 hover:shadow-md hover:-translate-y-1 active:scale-[0.98] transition-all duration-200 flex flex-col justify-between group"
         >
-          <div className="space-y-1.5">
-            <div className="p-2 rounded-xl bg-amber-50 text-amber-700 w-fit">
-              <Briefcase className="h-5 w-5" />
+          <div className="space-y-2">
+            <div className="p-2.5 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white shadow-sm w-fit group-hover:scale-110 transition-transform">
+              <Briefcase className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
-            <span className="font-bold text-sm text-slate-900 group-hover:text-amber-600 transition block">
-              Application Tracker
+            <span className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition block">
+              Job Tracker
             </span>
-            <p className="text-xs text-slate-500">Kanban pipeline & interview dates</p>
+            <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 line-clamp-2">Kanban pipeline & interview dates</p>
           </div>
-          <span className="text-xs font-semibold text-amber-600 pt-3 flex items-center gap-1">
+          <span className="text-[11px] sm:text-xs font-semibold text-amber-600 dark:text-amber-400 pt-3 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
             View Pipeline <ArrowRight className="h-3 w-3" />
           </span>
         </Link>
       </div>
 
       {/* 4. RECENT RESUMES LIST */}
-      <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-5">
-        <div className="flex items-center justify-between">
+      <div className="rounded-3xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 sm:p-8 shadow-sm space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-4">
           <div>
-            <h2 className="text-lg font-bold text-slate-900">Your Resumes ({resumes.length})</h2>
-            <p className="text-xs text-slate-500">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">Your Resumes ({resumes.length})</h2>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
               Each resume retains verified career facts while utilizing tailored designs and ATS keywords.
             </p>
           </div>
           <Link
             href="/templates"
-            className="text-xs font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1"
+            className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 flex items-center gap-1"
           >
             <Sparkles className="h-3.5 w-3.5" /> 1-Click 5-Version Generator →
           </Link>
@@ -279,19 +294,20 @@ export default function DashboardPage() {
           {resumes.map((res) => (
             <div
               key={res.id}
-              className="rounded-2xl border border-slate-200 p-4 sm:p-5 hover:border-slate-300 transition flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/40"
+              className="rounded-2xl border border-slate-200/80 dark:border-slate-800 p-4 sm:p-5 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-sm transition-all duration-200 flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-slate-50/40 dark:bg-slate-800/40"
             >
               <div className="space-y-1.5">
-                <div className="flex items-center gap-2">
-                  <span className="font-bold text-slate-900 text-sm">{res.title}</span>
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="font-bold text-slate-900 dark:text-white text-sm">{res.title}</span>
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
                     {res.ats_score || 90}% ATS Score
                   </span>
                   <span className="text-[11px] text-slate-400 font-mono">
                     Template: {res.template_id}
                   </span>
                 </div>
-                <p className="text-xs text-slate-600">
+                <p className="text-xs text-slate-600 dark:text-slate-300">
                   Target: <strong>{res.target_role}</strong> • {res.personal_info.fullName}
                 </p>
                 <div className="text-[10px] text-slate-400 flex items-center gap-1">
@@ -300,25 +316,25 @@ export default function DashboardPage() {
               </div>
 
               {/* Actions */}
-              <div className="flex items-center gap-2 flex-wrap text-xs">
+              <div className="flex items-center gap-2 flex-wrap text-xs pt-1 sm:pt-0">
                 <Link
                   href={`/builder/${res.id}`}
-                  className="px-3 py-1.5 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+                  className="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-bold transition shadow-xs"
                 >
                   Edit Content
                 </Link>
                 <Link
                   href="/templates"
-                  className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 font-medium hover:bg-slate-50 transition"
+                  className="px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 active:scale-95 transition"
                 >
                   Change Design
                 </Link>
                 {res.id && (
-                  <>
+                  <div className="flex items-center gap-1.5">
                     <a
                       href={exportApi.getDocxExportUrl(res.id)}
                       download
-                      className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 font-medium hover:bg-slate-50 transition inline-flex items-center gap-1"
+                      className="px-2.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition inline-flex items-center gap-1"
                       title="Word .docx"
                     >
                       <Download className="h-3 w-3" /> Word
@@ -326,14 +342,14 @@ export default function DashboardPage() {
                     <a
                       href={exportApi.getTxtExportUrl(res.id)}
                       download
-                      className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 font-medium hover:bg-slate-50 transition inline-flex items-center gap-1"
+                      className="px-2.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition inline-flex items-center gap-1"
                       title="Plain Text ATS"
                     >
                       .TXT
                     </a>
                     <button
                       onClick={() => handleCopyLink(res.id!)}
-                      className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 font-medium hover:bg-slate-50 transition inline-flex items-center gap-1"
+                      className="px-2.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition inline-flex items-center gap-1"
                       title="Share Public Link"
                     >
                       {copiedId === res.id ? (
@@ -344,7 +360,7 @@ export default function DashboardPage() {
                         </>
                       )}
                     </button>
-                  </>
+                  </div>
                 )}
               </div>
             </div>

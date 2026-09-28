@@ -223,17 +223,17 @@ export default function TailorResumePage() {
           />
         </div>
 
-        <div className="flex justify-between items-center pt-2">
+        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 pt-2">
           <div className="flex items-center gap-1.5 text-xs text-slate-500">
-            <Info className="h-4 w-4 text-blue-500" />
+            <Info className="h-4 w-4 text-blue-500 shrink-0" />
             <span>Factual Integrity Rule: AI only highlights skills already supported by your profile.</span>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <button
               onClick={handleAnalyzeJob}
               disabled={isAnalyzing || !jobDescription.trim()}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold transition"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 active:scale-95 text-slate-700 text-xs font-semibold transition"
             >
               <Sparkles className="h-4 w-4 text-blue-600" />
               {isAnalyzing ? "Extracting Requirements..." : "Analyze Job Posting"}
@@ -241,7 +241,7 @@ export default function TailorResumePage() {
             <button
               onClick={handleTailorResume}
               disabled={isTailoring || !jobDescription.trim()}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-500/20 transition"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-xs font-bold shadow-md shadow-blue-500/20 transition"
             >
               <Wand2 className="h-4 w-4" />
               {isTailoring ? "AI Tailoring in Progress..." : "🚀 Tailor My Resume for This Job"}
@@ -339,19 +339,21 @@ export default function TailorResumePage() {
             </div>
 
             {/* Score Comparison Badge */}
-            <div className="flex items-center gap-3">
-              <div className="px-3 py-1.5 rounded-xl bg-slate-100 text-center">
-                <span className="text-[10px] text-slate-500 font-semibold block uppercase">Before Score</span>
-                <span className="text-base font-bold text-slate-700">{tailorResult.original_ats_score}%</span>
-              </div>
-              <ArrowRight className="h-4 w-4 text-slate-400" />
-              <div className="px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-center">
-                <span className="text-[10px] text-emerald-700 font-semibold block uppercase">Projected ATS</span>
-                <span className="text-base font-black text-emerald-700">{tailorResult.projected_ats_score}%</span>
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto">
+              <div className="flex items-center gap-2">
+                <div className="px-3 py-1.5 rounded-xl bg-slate-100 text-center">
+                  <span className="text-[10px] text-slate-500 font-semibold block uppercase">Before Score</span>
+                  <span className="text-base font-bold text-slate-700">{tailorResult.original_ats_score}%</span>
+                </div>
+                <ArrowRight className="h-4 w-4 text-slate-400" />
+                <div className="px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-center">
+                  <span className="text-[10px] text-emerald-700 font-semibold block uppercase">Projected ATS</span>
+                  <span className="text-base font-black text-emerald-700">{tailorResult.projected_ats_score}%</span>
+                </div>
               </div>
               <button
                 onClick={acceptAllChanges}
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow transition ml-2"
+                className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-xs font-bold shadow transition sm:ml-2 flex-1 sm:flex-initial"
               >
                 <Check className="h-3.5 w-3.5" /> Accept All
               </button>

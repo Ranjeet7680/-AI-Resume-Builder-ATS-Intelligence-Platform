@@ -64,6 +64,7 @@ export default function CareerCoachPage() {
 
   // Active Mode: 'chat' | 'voice' | 'interview'
   const [activeTab, setActiveTab] = useState<"chat" | "voice" | "interview">("chat");
+  const [mobileView, setMobileView] = useState<"studio" | "settings">("studio");
   const [selectedLanguage, setSelectedLanguage] = useState("auto");
   const [speechSpeed, setSpeechSpeed] = useState<number>(1.0);
   const [speakingMessageId, setSpeakingMessageId] = useState<string | null>(null);
@@ -413,12 +414,38 @@ export default function CareerCoachPage() {
         </div>
       )}
 
+      {/* Mobile-Only Segmented View Switcher */}
+      <div className="flex lg:hidden rounded-2xl bg-slate-100 p-1 mb-4 text-xs font-bold shadow-xs">
+        <button
+          onClick={() => setMobileView("studio")}
+          className={`flex-1 py-2.5 rounded-xl transition-all flex items-center justify-center gap-1.5 ${
+            mobileView === "studio"
+              ? "bg-white text-blue-600 shadow-sm"
+              : "text-slate-600 hover:text-slate-900"
+          }`}
+        >
+          <Sparkles className="h-3.5 w-3.5" />
+          Interactive Studio ({activeTab === "chat" ? "💬 Chat" : activeTab === "voice" ? "🎙️ Voice" : "🏆 Mock"})
+        </button>
+        <button
+          onClick={() => setMobileView("settings")}
+          className={`flex-1 py-2.5 rounded-xl transition-all flex items-center justify-center gap-1.5 ${
+            mobileView === "settings"
+              ? "bg-white text-blue-600 shadow-sm"
+              : "text-slate-600 hover:text-slate-900"
+          }`}
+        >
+          <Settings2 className="h-3.5 w-3.5" />
+          Role &amp; Languages
+        </button>
+      </div>
+
       {/* Main Grid: Left Control/Context Drawer & Right Interactive Studio */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* ------------------------------------------------------------------- */}
         {/* LEFT COLUMN: Controls, Indian Languages & Resume Context (4 cols)   */}
         {/* ------------------------------------------------------------------- */}
-        <div className="lg:col-span-4 space-y-5">
+        <div className={`lg:col-span-4 space-y-5 ${mobileView === "settings" ? "block" : "hidden lg:block"}`}>
           {/* Header Card */}
           <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm space-y-4">
             <div className="flex items-center justify-between">
@@ -583,7 +610,7 @@ export default function CareerCoachPage() {
         {/* ------------------------------------------------------------------- */}
         {/* RIGHT COLUMN: Interactive Workspace (Chat / Voice / Interview) (8c) */}
         {/* ------------------------------------------------------------------- */}
-        <div className="lg:col-span-8 flex flex-col rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden h-[760px]">
+        <div className={`lg:col-span-8 flex flex-col rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden h-[calc(100vh-14rem)] min-h-[560px] max-h-[820px] ${mobileView === "studio" ? "flex" : "hidden lg:flex"}`}>
           {/* TAB 1: TEXT CHAT & CONVERSATION STUDIO */}
           {activeTab === "chat" && (
             <div className="flex-1 flex flex-col h-full">
@@ -760,12 +787,24 @@ export default function CareerCoachPage() {
                   </button>
                 </div>
 
-                {/* Status Indicator */}
-                <div className="space-y-1">
+                {/* Status Indicator & Voice Wave Equalizer */}
+                <div className="space-y-2">
                   {isRecording ? (
-                    <div className="flex items-center justify-center gap-2 text-rose-600 font-bold text-sm">
-                      <span className="flex h-3 w-3 rounded-full bg-rose-600 animate-pulse" />
-                      Listening... 00:{recordingSeconds < 10 ? `0${recordingSeconds}` : recordingSeconds}
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-center gap-2 text-rose-600 font-bold text-sm">
+                        <span className="flex h-3 w-3 rounded-full bg-rose-600 animate-pulse" />
+                        Listening... 00:{recordingSeconds < 10 ? `0${recordingSeconds}` : recordingSeconds}
+                      </div>
+
+                      {/* Equalizer soundwave bars */}
+                      <div className="flex items-center justify-center gap-1.5 h-8">
+                        <span className="h-3 w-1.5 bg-rose-400 rounded-full animate-soundwave [animation-delay:0.1s]" />
+                        <span className="h-6 w-1.5 bg-rose-500 rounded-full animate-soundwave [animation-delay:0.25s]" />
+                        <span className="h-8 w-1.5 bg-rose-600 rounded-full animate-soundwave [animation-delay:0.4s]" />
+                        <span className="h-5 w-1.5 bg-rose-500 rounded-full animate-soundwave [animation-delay:0.15s]" />
+                        <span className="h-7 w-1.5 bg-rose-600 rounded-full animate-soundwave [animation-delay:0.3s]" />
+                        <span className="h-4 w-1.5 bg-rose-400 rounded-full animate-soundwave [animation-delay:0.2s]" />
+                      </div>
                     </div>
                   ) : (
                     <div className="text-sm font-semibold text-slate-700">Tap to Start Voice Conversation</div>
